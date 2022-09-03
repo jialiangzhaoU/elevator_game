@@ -19,7 +19,8 @@ public class playerMove : MonoBehaviour
     private float headCheck_x;
     [HideInInspector]
     public float facedirection;
-    
+    public float horizontalmove ;
+
 
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class playerMove : MonoBehaviour
         player_high = this.GetComponent<BoxCollider2D>().size.y;
         player_weigth = this.GetComponent<BoxCollider2D>().size.x;
         facedirection = Input.GetAxisRaw("Horizontal");
+        horizontalmove = Input.GetAxis("Horizontal");
     }
     void Update()
     {
@@ -40,22 +42,23 @@ public class playerMove : MonoBehaviour
     }
     void Movement()
     {
-        float horizontalmove = Input.GetAxis("Horizontal");
-       
-       facedirection = Input.GetAxisRaw("Horizontal");
-        
+
+        horizontalmove = Input.GetAxis("Horizontal");
+        facedirection = Input.GetAxisRaw("Horizontal");
+
         //character move
         if (horizontalmove != 0)
         {
+         
             if (squat)
             {
-                rb.velocity = new Vector2(horizontalmove * speed*0.5f, rb.velocity.y);
+                rb.velocity = new Vector2(horizontalmove * speed * 0.5f, rb.velocity.y);
             }
             else {
                 rb.velocity = new Vector2(horizontalmove * speed, rb.velocity.y);
             }
-            
-           
+
+
         }
 
         //character turn around
@@ -63,10 +66,10 @@ public class playerMove : MonoBehaviour
         {
 
             transform.localScale = new Vector3(facedirection, 1, 1);
-           
+
         }
 
-        if (coll.IsTouchingLayers(ground))
+        if (coll.IsTouchingLayers(ground) || coll.IsTouchingLayers(headCheck))
         {
             jump_good = true;
         }
@@ -75,9 +78,9 @@ public class playerMove : MonoBehaviour
             jump_good = false;
         }
 
-        if (head.IsTouchingLayers(headCheck))
+        if (head.IsTouchingLayers(headCheck) || head.IsTouchingLayers(ground))
         {
-            if (coll.IsTouchingLayers(ground))
+            if (coll.IsTouchingLayers(ground) || coll.IsTouchingLayers(headCheck))
             {
                 print("Player dies due to being squashed");
             }
