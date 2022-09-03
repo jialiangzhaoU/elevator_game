@@ -11,10 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - ground
-  - elevotar
-  - enemy
-  - player
+  - Ground
+  - Elevator
+  - Player
+  - Enemy
+  - Guest
   - 
   - 
   - 
