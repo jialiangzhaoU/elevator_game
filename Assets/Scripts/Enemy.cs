@@ -26,11 +26,10 @@ public class Enemy : MonoBehaviour
     public bool alerted = false;
 
     public AudioSource AlertSound;
-
     public Rigidbody2D rb;
+    public Bullet BulletPrefab;
 
     bool Waiting;
-    bool TurnProximity; //Are we in range and want to turn around?
 
     //Shoot
     //Wait for elevator
@@ -47,14 +46,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (!alerted)
-        {
-            //Patrol();
-        }
         if (IsPlayerInRange() && !alerted)
         {
             AlertAction(PlayerLocation);
-            //Alert();
         }
 
 
@@ -83,7 +77,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 rb.velocity = new Vector3(0, 0, 0);
-                //print("Waiting");
+                print("Waiting");
                 yield return new WaitForSeconds(2);
                 TurnAround();
             }
@@ -129,6 +123,7 @@ public class Enemy : MonoBehaviour
 
     public void Alert(Vector3 Loc)
     {
+        Shoot();
         alerted = true;
         AlertSound.Play();
         print(Loc);
@@ -136,26 +131,23 @@ public class Enemy : MonoBehaviour
 
     public void Shoot() //Shoot at the player if spotted and in range
     {
-
+        Instantiate(BulletPrefab, transform.position, transform.rotation);
     }
 
-    public void TurnAround() //If you hit a wall, turn around
+    public void TurnAround() //If you hit a wall or pit, turn around
     {
-        print("Turning Around");
+        //print("Turning Around");
         if (transform.right == Vector3.right) //Which way are we facing? Which way should we turn towards?
         {
+            //print("Right");
             transform.rotation = new Quaternion(0, 180, 0, 0);
         }
         else
         {
+            //print("Left");
             transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
     }
 
-    IEnumerator Wait(float time)
-    {
-        rb.velocity = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(time);
-    }
 }
