@@ -27,8 +27,22 @@ public class fall_out : MonoBehaviour
         else {
             temp_time = time;
         }
-        if (temp_time <= 0) {
-            Destroy(this.transform.parent.gameObject);
+        if (this.transform.parent.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)
+        {
+            temp_time = time;
+        }
+            if (temp_time <= 0) {
+            if (this.transform.parent.GetComponent<attack>() )
+            {
+                
+                    print("player_fall_out");
+                    this.transform.parent.GetComponent<playerMove>().player_dead();
+                
+            }
+            else
+            {
+                Destroy(this.transform.parent.gameObject);
+            }
         }
         
     }

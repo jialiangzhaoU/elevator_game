@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class playerMove : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class playerMove : MonoBehaviour
     [HideInInspector]
     public float facedirection;
     public float horizontalmove ;
+    public string lose_name;
 
 
 
@@ -83,6 +86,7 @@ public class playerMove : MonoBehaviour
             if (coll.IsTouchingLayers(ground) || coll.IsTouchingLayers(headCheck))
             {
                 print("Player dies due to being squashed");
+                player_dead();
             }
             
         }
@@ -119,7 +123,21 @@ public class playerMove : MonoBehaviour
 
 
     }
- 
+
+    public void player_dead() {
+        
+            StartCoroutine(lose_menu());
+        
+        
+    }
+
+    IEnumerator lose_menu()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(lose_name);
+
+
+    }
 
 
 }
