@@ -8,7 +8,7 @@ public class fall_out : MonoBehaviour
     public LayerMask elevator;
     private Collider2D foot;
     public float time;
-    private float temp_time;
+    public float temp_time;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,5 +47,9 @@ public class fall_out : MonoBehaviour
         
     }
 
-  
+    public void temp_reset() {
+        temp_time = time;
+    }
+
+
 }
