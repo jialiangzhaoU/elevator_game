@@ -139,5 +139,9 @@ public class playerMove : MonoBehaviour
 
     }
 
+    public void player_jump() {
+        rb.AddForce(new Vector2(0, jumpforce));
+    }
+
 
 }
