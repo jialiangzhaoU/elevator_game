@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 
 public class playerMove : MonoBehaviour
-
-
 {
 
-    public Animator mc_animator;
+    //public Animator mc_animator;
 
     public Rigidbody2D rb;
     public float speed;
@@ -28,7 +26,7 @@ public class playerMove : MonoBehaviour
     public float facedirection;
     public float horizontalmove ;
     public string lose_name;
-
+    public bool InDoor;
 
 
     // Update is called once per frame
@@ -43,10 +41,23 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
-        mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
+        //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
 
         Movement();
       
+        if (Input.GetKeyDown("EnterDoor"))
+        {
+            if (!InDoor)
+            {
+                EnterDoor();
+            }
+            if (InDoor)
+            {
+                ExitDoor();
+            }
+
+        }
+
     }
     void Movement()
     {
@@ -57,13 +68,16 @@ public class playerMove : MonoBehaviour
         //character move
         if (horizontalmove != 0)
         {
-         
-            if (squat)
+            if (!InDoor)
             {
-                rb.velocity = new Vector2(horizontalmove * speed * 0.5f, rb.velocity.y);
-            }
-            else {
-                rb.velocity = new Vector2(horizontalmove * speed, rb.velocity.y);
+                if (squat)
+                {
+                    rb.velocity = new Vector2(horizontalmove * speed * 0.5f, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(horizontalmove * speed, rb.velocity.y);
+                }
             }
 
 
@@ -148,5 +162,14 @@ public class playerMove : MonoBehaviour
         rb.AddForce(new Vector2(0, jumpforce));
     }
 
+    void EnterDoor()
+    {
+        InDoor = true;
+    }
+
+    void ExitDoor()
+    {
+        InDoor = false;
+    }
 
 }
