@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 
 public class playerMove : MonoBehaviour
+
+
 {
+
+    public Animator mc_animator;
+
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
@@ -38,7 +43,7 @@ public class playerMove : MonoBehaviour
     }
     void Update()
     {
-        
+        mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
 
         Movement();
       
