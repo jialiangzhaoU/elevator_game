@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         //RaycastHit2D Hit = Physics2D.Raycast(transform.position, transform.forward * LineOfSightDistance);
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position + transform.up * 0.1f, transform.right * LineOfSightDistance, Color.red);
+            Debug.DrawRay(transform.position + transform.up * 0.1f, transform.right * LineOfSightDistance, Color.red); // Debug purposes
         }
 
         return (Physics2D.Raycast(transform.position, transform.right, LineOfSightDistance, PlayerMask));
