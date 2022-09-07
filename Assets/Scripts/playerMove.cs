@@ -57,11 +57,11 @@ public class playerMove : MonoBehaviour
         {
             if (!InDoor)
             {
-                EnterDoor();
+                StartCoroutine(EnterDoor()); 
             }
             else if (InDoor)
             {
-                ExitDoor();
+                StartCoroutine(ExitDoor()); 
             }
 
         }
@@ -207,16 +207,26 @@ public class playerMove : MonoBehaviour
         rb.AddForce(new Vector2(0, jumpforce));
     }
 
-    void EnterDoor()
+    IEnumerator EnterDoor()
     {
         print("Entering Door");
         rb.velocity = new Vector2(0, 0);
+        yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
+        this.gameObject.layer = 11;
+        this.transform.Find("jumpCheck").gameObject.layer = 11;
+        this.transform.Find("headCheck").gameObject.layer = 11;
+        this.GetComponent<Renderer>().enabled = false;
         InDoor = true;
     }
 
-    void ExitDoor()
+    IEnumerator ExitDoor()
     {
         print("Exiting Door");
+        yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
+        this.gameObject.layer = 8;
+        this.transform.Find("jumpCheck").gameObject.layer = 8;
+        this.transform.Find("headCheck").gameObject.layer = 8;
+        this.GetComponent<Renderer>().enabled = true;
         InDoor = false;
     }
 

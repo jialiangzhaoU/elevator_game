@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<playerMove>())
         {
             collision.gameObject.GetComponent<playerMove>().InRangeofDoor = true;
 
@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<playerMove>())
         {
             collision.gameObject.GetComponent<playerMove>().InRangeofDoor = false;
         }
