@@ -9,6 +9,8 @@ public class Escalator_area : MonoBehaviour
     public bool isMove = false;
     public bool move=false;
     private Collider2D check;
+    public bool Top; //True for Top, False for Bottom
+    public Transform endSpot; //Location of opposite escalator area
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +20,23 @@ public class Escalator_area : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && check!=null) { 
-            move = true;
-            
+        if (Top)
+        {
+            if (Input.GetKeyDown(KeyCode.S) && check != null)
+            {
+                move = true;
+
+            }
         }
+        else if (!Top)
+        {
+            if (Input.GetKeyDown(KeyCode.W) && check != null)
+            {
+                move = true;
+
+            }
+        }
+
         
        
     }

@@ -24,6 +24,9 @@ public class Enemy : MonoBehaviour
     public float ChaseSpeed;
     public Vector3 PlayerLocation;
     public bool alerted = false;
+    public bool InEscalator;
+    public bool InEscalatorArea;
+    public Vector3 EscalatorDestination;
 
     public AudioSource AlertSound;
     public Rigidbody2D rb;
@@ -51,6 +54,10 @@ public class Enemy : MonoBehaviour
             AlertAction(PlayerLocation);
         }
 
+        if (InEscalator)
+        {
+            RidingEscalator();
+        }
 
 
     }
@@ -70,14 +77,17 @@ public class Enemy : MonoBehaviour
     {
         while (!alerted)
         {
-            if (!WallCheck() && FloorCheck()) //Move if we DON'T hit a wall and if we DO hit a floor
+            if (!WallCheck() && FloorCheck() && !InEscalator) //Move if we DON'T hit a wall and if we DO hit a floor
             {
                 rb.velocity = transform.right * PatrolSpeed;
             }
             else
             {
-                rb.velocity = new Vector3(0, 0, 0);
-                print("Waiting");
+                if (!InEscalator)
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                }            
+                //print("Waiting");
                 yield return new WaitForSeconds(2);
                 TurnAround();
             }
@@ -148,6 +158,43 @@ public class Enemy : MonoBehaviour
             transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
+    }
+
+    void TakeEscalator()
+    {
+        InEscalator = true;
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    void RidingEscalator()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, EscalatorDestination, PatrolSpeed * Time.deltaTime);
+        if (transform.position == EscalatorDestination)
+        {
+            InEscalator = false;
+            rb.isKinematic = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            Escalator_area startPoint = collision.gameObject.GetComponent<Escalator_area>();
+            InEscalatorArea = true;
+            EscalatorDestination = collision.gameObject.GetComponent<Escalator_area>().endSpot.transform.position;
+
+            TakeEscalator();
+            print("Hit an escalator");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            InEscalatorArea = false;
+        }
     }
 
 }

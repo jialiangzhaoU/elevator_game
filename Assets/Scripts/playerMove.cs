@@ -27,7 +27,12 @@ public class playerMove : MonoBehaviour
     public float horizontalmove ;
     public string lose_name;
     public bool InDoor;
-
+    public bool InRangeofDoor;
+    public bool Disguised;
+    public bool InElevator;
+    private bool InEscalator;
+    private bool InEscalatorArea;
+    public Vector3 EscalatorDestination;
 
     // Update is called once per frame
 
@@ -42,21 +47,57 @@ public class playerMove : MonoBehaviour
     void Update()
     {
         //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
-
-        Movement();
+        if (!InDoor && !InEscalator)
+        {
+            Movement();
+        }
+        
       
-        if (Input.GetKeyDown("EnterDoor"))
+        if (Input.GetButtonDown("EnterDoor") && InRangeofDoor)
         {
             if (!InDoor)
             {
                 EnterDoor();
             }
-            if (InDoor)
+            else if (InDoor)
             {
                 ExitDoor();
             }
 
         }
+
+        if (InEscalatorArea)
+        {
+            if (EscalatorDestination.y - transform.position.y > 0) //If the endpoint is Higher, We want to hit W to Ascend
+            {
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    InEscalator = true;
+                    rb.bodyType = RigidbodyType2D.Static;
+                }
+            }
+            else //Else if the endpoint is lower, we hit S to descend
+            {
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    InEscalator = true;
+                    rb.bodyType = RigidbodyType2D.Static;
+                }
+            }
+        }
+
+        if (InEscalator)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, EscalatorDestination, speed * Time.deltaTime);
+            if (transform.position == EscalatorDestination)
+            {
+                InEscalator = false;
+                rb.isKinematic = false;
+            }
+        }
+
+
+
 
     }
     void Movement()
@@ -132,10 +173,14 @@ public class playerMove : MonoBehaviour
 
             }
             else {
-                head.transform.localPosition = new Vector2(headCheck_x, headCheck_y-1);
-                this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -player_high / 4);
-                this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high / 2);
-                squat = true;
+                if (!InEscalatorArea)
+                {
+                    head.transform.localPosition = new Vector2(headCheck_x, headCheck_y - 1);
+                    this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -player_high / 4);
+                    this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high / 2);
+                    squat = true;
+                }
+
 
             }
         }
@@ -164,12 +209,37 @@ public class playerMove : MonoBehaviour
 
     void EnterDoor()
     {
+        print("Entering Door");
+        rb.velocity = new Vector2(0, 0);
         InDoor = true;
     }
 
     void ExitDoor()
     {
+        print("Exiting Door");
         InDoor = false;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            Escalator_area startPoint = collision.gameObject.GetComponent<Escalator_area>();
+            InEscalatorArea = true;
+            EscalatorDestination = collision.gameObject.GetComponent<Escalator_area>().endSpot.transform.position;
+
+
+            //print("Hit an escalator");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            InEscalatorArea = false;
+        }
     }
 
 }

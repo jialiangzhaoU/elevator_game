@@ -43,7 +43,7 @@ public class normal_el_move : MonoBehaviour
             //Draw a different ray depending on if we're going up or down, because that matters
             if (Physics2D.Raycast(transform.position - transform.up * 3.3f, transform.right, 4, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
             {
-                print("Hit a New Floor!");
+                //print("Hit a New Floor!");
                 StartCoroutine(HitFloorPause());
                 StartCoroutine(Pause());
 
@@ -71,7 +71,7 @@ public class normal_el_move : MonoBehaviour
             //Draw a different ray depending on if we're going up or down, because that matters
             if (Physics2D.Raycast(transform.position - transform.up * 2.2f, transform.right, 4, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
             {
-                print("Hit a New Floor!");
+                //print("Hit a New Floor!");
                 StartCoroutine(HitFloorPause());
                 StartCoroutine(Pause());
 
@@ -89,8 +89,6 @@ public class normal_el_move : MonoBehaviour
             }
         }
 
-
-        //yield return new WaitForSeconds(0.1f);
 
     }
 
