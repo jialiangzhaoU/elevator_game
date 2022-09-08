@@ -60,7 +60,7 @@ public class wenjia_movementtest : MonoBehaviour
         Vector3 horizontal= new Vector3(Input.GetAxis("Horizontal"), 0.0f,0.0f);
         transform.position=transform.position+horizontal*Time.deltaTime;
 
-        Movement();
+       // Movement();
 
         if (Input.GetKeyDown(KeyCode.Space) && onGround == true) //&& jump_good == true
         {
@@ -79,16 +79,16 @@ public class wenjia_movementtest : MonoBehaviour
 
 
 
-    void Movement()
-    {
-        float facedirection = Input.GetAxisRaw("Horizontal");
+    // void Movement()
+    // {
+    //     float facedirection = Input.GetAxisRaw("Horizontal");
 
-        if (facedirection != 0)
-        {
-            transform.localScale = new Vector3(facedirection, 1, 1);
+    //     if (facedirection != 0)
+    //     {
+    //         transform.localScale = new Vector3(facedirection, 1, 1);
            
-        }
-    }//
+    //     }
+    // }//
 
 
 

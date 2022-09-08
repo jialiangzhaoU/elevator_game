@@ -270,7 +270,7 @@ MonoBehaviour:
   mc_animator: {fileID: 62432252}
   rb: {fileID: 62432251}
   audioSource: {fileID: 62432247}
-  feet: {fileID: 0}
+  feet: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
   jumpForce: 3
 --- !u!61 &62432250
 BoxCollider2D:
@@ -755,7 +755,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &690596173
@@ -1262,7 +1262,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1936793263
@@ -1442,7 +1442,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1947651634
