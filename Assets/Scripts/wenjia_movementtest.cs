@@ -21,6 +21,17 @@ public Rigidbody2D rb;
     void Update()
     {
         mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal")); //walk
+
+        if (Input.GetAxis("Horizontal") >= 0.1 || Input.GetAxis("Horizontal") <= -0.1)
+        {
+
+            mc_animator.SetFloat("Horizontal", 1); //walk
+        }
+        else {
+            mc_animator.SetFloat("Horizontal", 0); //walk
+        }
+
+
         mc_animator.SetBool("Jump", Input.GetKey(KeyCode.Space)); //
 
 
