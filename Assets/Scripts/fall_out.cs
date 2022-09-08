@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class fall_out : MonoBehaviour
 {
+    public AudioSource audioFall;
     public LayerMask ground;
     public LayerMask elevator;
     private Collider2D foot;
@@ -31,7 +32,12 @@ public class fall_out : MonoBehaviour
         {
             temp_time = time;
         }
-            if (temp_time <= 0) {
+        if (temp_time <= 0) 
+        {
+            if (!audioFall.isPlaying)
+            {
+                audioFall.Play();
+            }
             if (this.transform.parent.GetComponent<attack>() )
             {
                 
@@ -41,6 +47,7 @@ public class fall_out : MonoBehaviour
             }
             else
             {
+                
                 Destroy(this.transform.parent.gameObject);
             }
         }

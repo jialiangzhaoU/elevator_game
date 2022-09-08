@@ -46,7 +46,7 @@ public class to_win : MonoBehaviour
         
         other.gameObject.GetComponent<playerMove>().enabled = false;
         
-        other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-1 * 10 , other.gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-1 * 5 , other.gameObject.GetComponent<Rigidbody2D>().velocity.y);
         other.gameObject.transform.GetChild(0).DetachChildren();
         yield return 1;
     }
