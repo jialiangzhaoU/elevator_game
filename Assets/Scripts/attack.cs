@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
-
+    public Animator mc_animator;
     public int damage;
     public float startTime;
     public float time;
@@ -33,9 +33,11 @@ public class attack : MonoBehaviour
 
     IEnumerator StartAttack()
     {
+        mc_animator.SetBool("FistAttack", true);
         yield return new WaitForSeconds(startTime);
         air.enabled = true;
         punch.enabled = true;
+        mc_animator.SetBool("FistAttack", true);
         StartCoroutine(disableHitBox());
     }
 
@@ -44,6 +46,7 @@ public class attack : MonoBehaviour
         yield return new WaitForSeconds(time);
         air.enabled = false;
         punch.enabled = false;
+        mc_animator.SetBool("FistAttack", false);
     }
 
 
