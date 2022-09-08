@@ -9,6 +9,26 @@ public class PlayAudio : MonoBehaviour
     public AudioSource audioSource;
     void Start()
     {
-        audioSource.Play();
+      
+    }
+
+    void Update() {
+
+
+        if (Input.GetAxis("Horizontal") >= 0.1 || Input.GetAxis("Horizontal") <= -0.1)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+
+            }
+           
+
+        }
+        else
+        {
+            audioSource.Pause();
+        }
+
     }
 }

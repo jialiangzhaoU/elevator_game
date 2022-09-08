@@ -176,7 +176,7 @@ public class playerMove : MonoBehaviour
             else {
                 if (!InEscalatorArea)
                 {
-                    head.transform.localPosition = new Vector2(headCheck_x, headCheck_y - 1);
+                    head.transform.localPosition = new Vector2(headCheck_x, headCheck_y - player_high/2);
                     this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -player_high / 4);
                     this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high / 2);
                     squat = true;
