@@ -24,7 +24,6 @@ public class NPC : MonoBehaviour
     public bool InEscalatorArea;
     public Vector3 EscalatorDestination;
 
-    public AudioSource AlertSound;
     public Rigidbody2D rb;
 
     public bool Waiting;
@@ -123,7 +122,6 @@ public class NPC : MonoBehaviour
     public virtual void Alert(Vector3 Loc)
     {
         alerted = true;
-        AlertSound.Play();
         print(Loc);
     }
 }

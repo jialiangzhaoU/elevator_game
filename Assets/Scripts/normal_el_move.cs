@@ -6,16 +6,19 @@ public class normal_el_move : MonoBehaviour
 {
     [Tooltip("Let line of sight be visible, for Dev Purposes")]
     public bool ToggleLineVisibility = false;
+    [Tooltip("If the player is inside, let player control elevators movement")]
+    public bool inPlayerControl; //We need to allow for the player to control the elevators movement while riding it
     public LayerMask WallMask;
-    public float top;
-    public float bottom;
     public float speed;
     [Tooltip("How long does the elevator wait when it's stopped?")]
     public float ElevatorWaitTime;
     private bool go_up;
-    bool isPlayerRiding; //We need to allow for the player to control the elevators movement while riding it
     bool Waiting; //Elevator should pause when we hit a new floor so people can get on and off
     bool shouldPause;
+    public float StopLocationBottom;
+    public float StopLocationTop;
+    public float RoofLoc;
+    public float FloorLoc;
 
     void Start()
     {
@@ -26,35 +29,59 @@ public class normal_el_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (!inPlayerControl)
+        {
+            Movement();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                if (!RoofCheck())
+                {
+                    transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
+                }
+                
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                if (!FloorCheck())
+                {
+                    transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
+                }
+                
+            }
+        }
     }
 
     void Movement()
     {
 
 
+
         if (go_up)
         {
             if (ToggleLineVisibility)
             {
-                Debug.DrawRay(transform.position - transform.up * 3.3f, transform.right * 4, Color.green);
+                Debug.DrawRay(transform.position - transform.up * StopLocationBottom, transform.right * 0.6f, Color.green);
             }
                 
             //Draw a different ray depending on if we're going up or down, because that matters
-            if (Physics2D.Raycast(transform.position - transform.up * 3.3f, transform.right, 4, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
+            if (Physics2D.Raycast(transform.position - transform.up * StopLocationBottom, transform.right, 0.6f, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
             {
                 //print("Hit a New Floor!");
                 StartCoroutine(HitFloorPause());
                 StartCoroutine(Pause());
 
             }
-            if (transform.position.y <= top && !Waiting)
+            
+            if (!RoofCheck() && !Waiting)
             {
 
 
                 transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
             }
-            else if (transform.position.y > top && !Waiting)
+            else if (RoofCheck() && !Waiting)
             {
                 StartCoroutine(Pause());
 
@@ -66,22 +93,23 @@ public class normal_el_move : MonoBehaviour
         {
             if (ToggleLineVisibility)
             {
-                Debug.DrawRay(transform.position - transform.up * 2.2f, transform.right * 4, Color.green); 
+                Debug.DrawRay(transform.position - transform.up * StopLocationTop, transform.right * 0.6f, Color.green); 
             }
             //Draw a different ray depending on if we're going up or down, because that matters
-            if (Physics2D.Raycast(transform.position - transform.up * 2.2f, transform.right, 4, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
+            if (Physics2D.Raycast(transform.position - transform.up * StopLocationTop, transform.right, 0.6f, WallMask) && shouldPause) //Check if we've hit a new floor, if so, stop
             {
                 //print("Hit a New Floor!");
                 StartCoroutine(HitFloorPause());
                 StartCoroutine(Pause());
 
             }
-            if (transform.position.y >= bottom && !Waiting)
+            
+            if (!FloorCheck() && !Waiting)
             {
 
                 transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
             }
-            else if (transform.position.y < bottom && !Waiting)
+            else if (FloorCheck() && !Waiting)
             {
 
                 StartCoroutine(Pause());
@@ -89,6 +117,26 @@ public class normal_el_move : MonoBehaviour
             }
         }
 
+
+    }
+
+    bool FloorCheck()
+    {
+        if (ToggleLineVisibility)
+        {
+            Debug.DrawRay(transform.position - transform.up * FloorLoc, -transform.up * 0.2f, Color.red);
+        }
+        return Physics2D.Raycast(transform.position - transform.up * FloorLoc, -transform.up, 0.2f, WallMask);
+
+    }
+
+    bool RoofCheck()
+    {
+        if (ToggleLineVisibility)
+        {
+            Debug.DrawRay(transform.position + transform.up * RoofLoc, transform.up * 0.2f, Color.red);
+        }
+        return Physics2D.Raycast(transform.position + transform.up * RoofLoc, transform.up, 0.2f, WallMask);
 
     }
 
@@ -103,7 +151,25 @@ public class normal_el_move : MonoBehaviour
     IEnumerator HitFloorPause() //Stop Drawing a ray for a few moments after hitting a new floor so we don't get stuck waiting on every new floor
     {
         shouldPause = false;
-        yield return new WaitForSeconds(ElevatorWaitTime + 0.5f);
+        yield return new WaitForSeconds(ElevatorWaitTime + 0.1f);
         shouldPause = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            print("Player in Elevator!");
+            inPlayerControl = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            print("Player Left Elevator!");
+            inPlayerControl = false;
+        }
     }
 }

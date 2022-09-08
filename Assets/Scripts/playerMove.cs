@@ -26,7 +26,7 @@ public class playerMove : MonoBehaviour
     private float headCheck_x;
     [HideInInspector]
     public float facedirection;
-    public float horizontalmove ;
+    public float horizontalmove;
     public string lose_name;
     public bool InDoor;
     public bool InRangeofDoor;
@@ -35,6 +35,7 @@ public class playerMove : MonoBehaviour
     private bool InEscalator;
     private bool InEscalatorArea;
     public Vector3 EscalatorDestination;
+    //public AudioSource AlertSound;
 
     // Update is called once per frame
 
@@ -147,7 +148,7 @@ public class playerMove : MonoBehaviour
         //character turn around
         if (facedirection != 0)
         {
-            print("sdasdsa");
+            //print("sdasdsa");
             transform.localScale = new Vector3(facedirection, 1, 1);
 
         }
@@ -166,8 +167,8 @@ public class playerMove : MonoBehaviour
         {
             if (coll.IsTouchingLayers(ground) || coll.IsTouchingLayers(headCheck))
             {
-                print("Player dies due to being squashed");
-                player_dead();
+                //print("Player dies due to being squashed");
+                //player_dead();
             }
             
         }
@@ -286,6 +287,11 @@ public class playerMove : MonoBehaviour
 
 
             //print("Hit an escalator");
+        }
+
+        if (collision.gameObject.layer == 7)
+        {
+
         }
     }
 
