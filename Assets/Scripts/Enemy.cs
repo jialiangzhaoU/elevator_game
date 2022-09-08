@@ -82,7 +82,6 @@ public class Enemy : NPC
         
         //Shoot();
         alerted = true;
-        AlertSound.Play();
         StartCoroutine(Chase());
         //print(Loc);
     }

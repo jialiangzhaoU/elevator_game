@@ -158,13 +158,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5e9555b8f7b5a4f91b4e7be2f82ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ToggleLineVisibility: 0
   WallMask:
     serializedVersion: 2
     m_Bits: 64
   top: 10
   bottom: 0
   speed: 5
-  ElevatorWaitTime: 2
+  ElevatorWaitTime: 0.2
 --- !u!1 &8547705987821631261
 GameObject:
   m_ObjectHideFlags: 0
