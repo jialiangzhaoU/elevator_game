@@ -13,7 +13,7 @@ public class wenjia_movementtest : MonoBehaviour
     public Animator mc_animator;
     public Rigidbody2D rb;
     public AudioSource audioSource;
-    public AudioClip feet;
+    //public AudioClip feet;
 
     public float jumpForce = 20f;
     private bool onGround = false;
@@ -23,20 +23,7 @@ public class wenjia_movementtest : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetAxis("Horizontal") >= 0.1 || Input.GetAxis("Horizontal") <= -0.1)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-
-            }
-           
-
-        }
-        else
-        {
-            audioSource.Pause();
-        }
+    
 
 
         mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal")); //walk
@@ -44,10 +31,16 @@ public class wenjia_movementtest : MonoBehaviour
         if (Input.GetAxis("Horizontal") >= 0.1 || Input.GetAxis("Horizontal") <= -0.1)
         {
 
-            mc_animator.SetFloat("Horizontal", 1); //walk
+            mc_animator.SetFloat("Horizontal", 1);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+
+            } //walk
         }
         else {
-            mc_animator.SetFloat("Horizontal", 0); //walk
+            mc_animator.SetFloat("Horizontal", 0);
+            audioSource.Pause(); //walk
         }
 
 

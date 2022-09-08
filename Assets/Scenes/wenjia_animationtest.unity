@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 62432251}
   - component: {fileID: 62432250}
   - component: {fileID: 62432249}
-  - component: {fileID: 62432248}
   - component: {fileID: 62432247}
   m_Layer: 0
   m_Name: Sprite-Enemy
@@ -242,7 +241,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &62432248
+--- !u!114 &62432249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,26 +250,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 62432246}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f28b74eb0ad29e942947f0c6ab051fe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 62432247}
---- !u!114 &62432249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62432246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6888341047a50ef40860bd692f6be76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mc_animator: {fileID: 62432252}
   rb: {fileID: 62432251}
   audioSource: {fileID: 62432247}
-  feet: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
   jumpForce: 3
 --- !u!61 &62432250
 BoxCollider2D:
@@ -420,7 +405,6 @@ GameObject:
   - component: {fileID: 404257305}
   - component: {fileID: 404257307}
   - component: {fileID: 404257306}
-  - component: {fileID: 404257308}
   - component: {fileID: 404257309}
   m_Layer: 0
   m_Name: Sprite-MCwalk_0
@@ -552,7 +536,6 @@ MonoBehaviour:
   mc_animator: {fileID: 404257302}
   rb: {fileID: 404257305}
   audioSource: {fileID: 404257309}
-  feet: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
   jumpForce: 3
 --- !u!61 &404257307
 BoxCollider2D:
@@ -580,19 +563,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11447048, y: 0.24095011}
   m_EdgeRadius: 0
---- !u!114 &404257308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404257300}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f28b74eb0ad29e942947f0c6ab051fe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 404257309}
 --- !u!82 &404257309
 AudioSource:
   m_ObjectHideFlags: 0
