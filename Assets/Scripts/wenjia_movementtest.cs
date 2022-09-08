@@ -43,7 +43,13 @@ public class wenjia_movementtest : MonoBehaviour
             audioSource.Pause(); //walk
         }
 
+        float facedirection = Input.GetAxisRaw("Horizontal");
 
+        if (facedirection != 0)
+        {
+            transform.localScale = new Vector3(facedirection, 1, 1);
+
+        }
         mc_animator.SetBool("Jump", Input.GetKey(KeyCode.Space)); //
 
 
@@ -74,18 +80,12 @@ public class wenjia_movementtest : MonoBehaviour
 
     // void Movement()
     // {
-    //     float facedirection = Input.GetAxisRaw("Horizontal");
 
-    //     if (facedirection != 0)
-    //     {
-    //         transform.localScale = new Vector3(facedirection, 1, 1);
-           
-    //     }
-    // }//
+// }//
 
 
 
-    void Jump(){
+void Jump(){
 
     Vector2 vertical= new Vector2(rb.velocity.x,jumpForce);
     rb.velocity=vertical;

@@ -9,12 +9,14 @@ public class playerMove : MonoBehaviour
 
     //public Animator mc_animator;
 
+    public Animator mc_animator;
+    public AudioSource audioSource;
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
     public LayerMask ground;
     public LayerMask headCheck;
-    private bool jump_good=false;
+    private bool jump_good = false;
     public Collider2D coll;
     public Collider2D head;
     private bool squat;
@@ -117,7 +119,25 @@ public class playerMove : MonoBehaviour
                 }
                 else
                 {
+                    if (Input.GetAxis("Horizontal") >= 0.1 || Input.GetAxis("Horizontal") <= -0.1)
+                    {
+
+                        mc_animator.SetFloat("Horizontal", 1);
+                        if (!audioSource.isPlaying)
+                        {
+                            audioSource.Play();
+
+                        } //walk
+                    }
+                    else
+                    {
+                        mc_animator.SetFloat("Horizontal", 0);
+                        audioSource.Pause(); //walk
+                    }
                     rb.velocity = new Vector2(horizontalmove * speed, rb.velocity.y);
+                   
+
+                   
                 }
             }
 
@@ -127,7 +147,7 @@ public class playerMove : MonoBehaviour
         //character turn around
         if (facedirection != 0)
         {
-
+            print("sdasdsa");
             transform.localScale = new Vector3(facedirection, 1, 1);
 
         }
