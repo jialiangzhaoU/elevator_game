@@ -51,8 +51,8 @@ public class playerMove : MonoBehaviour
         {
             Movement();
         }
-        
-      
+
+
         if (Input.GetButtonDown("EnterDoor") && InRangeofDoor)
         {
             if (!InDoor)
@@ -189,6 +189,30 @@ public class playerMove : MonoBehaviour
 
     }
 
+    public void TurnAround() //If you hit a wall or pit, turn around
+    {
+
+        if (Input.GetAxis("Horizontal") > 0) //Moving right
+        {
+            if (Vector3.Dot(transform.right, Vector3.right) < 0)
+            {
+                transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+        }
+        else if (Input.GetAxis("Horizontal") < 0) //Moving Left
+        {
+            if (Vector3.Dot(transform.right, Vector3.right) > 0)
+            {
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+        }
+
+
+
+
+    }
+
+
     public void player_dead() {
         
             StartCoroutine(lose_menu());
@@ -252,5 +276,7 @@ public class playerMove : MonoBehaviour
             InEscalatorArea = false;
         }
     }
+
+
 
 }
