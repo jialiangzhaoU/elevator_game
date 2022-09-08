@@ -11,7 +11,7 @@ public class wenjia_movementtest : MonoBehaviour
    // }
 
     public Animator mc_animator;
-    public Rigidbody2D rb;
+public Rigidbody2D rb;
 
     public float jumpForce = 20f;
     private bool onGround = false;
@@ -38,6 +38,13 @@ public class wenjia_movementtest : MonoBehaviour
             Jump();
         }
 
+    //     if (Input.GetAxis("Horizontal") < 0)
+    //   {
+    //       transform.Translate(Vector2.right  * Time.deltaTime);
+    //       transform.rotation = Quaternion.Euler(0, 180f, 0f);
+    //       ruyinAnimation.CrossFade("walk_left");
+    //   }
+
     }
 
 
@@ -51,7 +58,8 @@ public class wenjia_movementtest : MonoBehaviour
             transform.localScale = new Vector3(facedirection, 1, 1);
            
         }
-    }//direction change not working
+    }//
+
 
 
     void Jump(){
