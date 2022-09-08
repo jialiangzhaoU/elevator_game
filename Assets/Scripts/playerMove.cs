@@ -131,9 +131,10 @@ public class playerMove : MonoBehaviour
             transform.localScale = new Vector3(facedirection, 1, 1);
 
         }
-
+       
         if (coll.IsTouchingLayers(ground) || coll.IsTouchingLayers(headCheck))
         {
+            
             jump_good = true;
         }
         else
