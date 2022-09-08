@@ -13,7 +13,7 @@ public class Enemy : NPC
 
 
     //If players y value is a certain distance higher or lower than our distance, then find an escalator or elevator to take
-    //
+
 
 
     void Start()
@@ -38,6 +38,7 @@ public class Enemy : NPC
     {
         if (IsPlayerInRange() && !alerted)
         {
+            PlayerLocation = GameObject.FindObjectOfType<playerMove>().transform.position;
             AlertAction(PlayerLocation);
         }
 
@@ -57,6 +58,14 @@ public class Enemy : NPC
         while (alerted)
         {
             yield return new WaitForSeconds(2);
+            if (Vector3.Dot((GameObject.FindObjectOfType<playerMove>().transform.position - transform.position).normalized, transform.right) < 0) //Using Gamebject.Find just cause for now, might fix later lol
+            {
+                TurnAround();
+            }
+
+            Shoot();
+            //print("Chasing...");
+            
         }
     }
 
@@ -65,10 +74,17 @@ public class Enemy : NPC
 
     public override void Alert(Vector3 Loc)
     {
-        Shoot();
+        if (Vector3.Dot((Loc - transform.position).normalized, transform.right) < 0) //If Enemy is facing away from Player, turn around
+        {
+            TurnAround();
+        }
+        
+        
+        //Shoot();
         alerted = true;
         AlertSound.Play();
-        print(Loc);
+        StartCoroutine(Chase());
+        //print(Loc);
     }
 
     public void Shoot() //Shoot at the player if spotted and in range
