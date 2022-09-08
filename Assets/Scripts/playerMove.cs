@@ -10,7 +10,8 @@ public class playerMove : MonoBehaviour
     //public Animator mc_animator;
 
     public Animator mc_animator;
-    public AudioSource audioSource;
+    public AudioSource audioWalk;
+    public AudioSource audioJump;
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
@@ -128,9 +129,9 @@ public class playerMove : MonoBehaviour
                         
                         
                        
-                        if (!audioSource.isPlaying)
+                        if (!audioWalk.isPlaying)
                         {
-                            audioSource.Play();
+                            audioWalk.Play();
 
                         } //walk
                     }
@@ -138,7 +139,7 @@ public class playerMove : MonoBehaviour
                     {
                         mc_animator.SetFloat("Horizontal", 0);
                      
-                        audioSource.Pause(); //walk
+                        audioWalk.Pause(); //walk
                     }
                     rb.velocity = new Vector2(horizontalmove * speed, rb.velocity.y);
                    
@@ -190,6 +191,9 @@ public class playerMove : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jump_good == true)
         {
+            
+                audioJump.Play();
+
             
             rb.AddForce(new Vector2(0, jumpforce));
             head.transform.localPosition = new Vector2(headCheck_x, headCheck_y);
