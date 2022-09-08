@@ -28,6 +28,7 @@ public class Guest : NPC
     {
         if (IsPlayerInRange() && !alerted)
         {
+            PlayerLocation = GameObject.FindObjectOfType<playerMove>().transform.position;
             AlertAction(PlayerLocation);
         }
     }
