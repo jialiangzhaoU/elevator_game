@@ -5,7 +5,7 @@ using UnityEngine;
 public class punch_attack : MonoBehaviour
 {
 
-  
+    public GameObject blood;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +31,12 @@ public class punch_attack : MonoBehaviour
     IEnumerator enemyDead(Collider2D other) {
        
        yield return new WaitForSeconds(1);
- 
-       Destroy(other.gameObject);
-
-
+        
+        Destroy(other.gameObject);
+       
+        Instantiate(blood,
+                  other.gameObject.transform.position,
+                  other.gameObject.transform.rotation);
     }
 
 
