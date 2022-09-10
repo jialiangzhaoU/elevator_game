@@ -242,7 +242,7 @@ public class playerMove : MonoBehaviour
     IEnumerator lose_menu()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(lose_name);
+       // SceneManager.LoadScene(lose_name);
 
 
     }
