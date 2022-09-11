@@ -2088,11 +2088,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5113118026316880960, guid: 50c94da00db688441ac10e51516c0288, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.41
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 5113118026316880960, guid: 50c94da00db688441ac10e51516c0288, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.34
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 5113118026316880960, guid: 50c94da00db688441ac10e51516c0288, type: 3}
       propertyPath: m_LocalPosition.z
@@ -134673,7 +134673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900198850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.583, y: 1.066, z: 0}
+  m_LocalPosition: {x: -3.61, y: 2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134731,7 +134731,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1900198859
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
