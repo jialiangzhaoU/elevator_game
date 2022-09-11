@@ -6,6 +6,7 @@ public class Enemy : NPC
 {
     //Delegates To Alert Nearby enemies when spotted
     //Broadcast the enemies position as well, if in range, then get alerted
+    public Animator e_animator;
     public LayerMask ElevatorMask;
     public static event AlertOthers AlertAction;
     bool inElevator;
@@ -39,7 +40,7 @@ public class Enemy : NPC
 
     void Update()
     {
-
+       
         ElevatorCheck();
         if (alerted)
         {
@@ -74,7 +75,8 @@ public class Enemy : NPC
     {
         while (alerted)
         {
-            yield return new WaitForSeconds(2);
+
+            yield return new WaitForSeconds(Random.Range(3.0f, 6.0f));
             if (Vector3.Dot((PlayerLocation - transform.position).normalized, transform.right) < 0) 
             {
                 TurnAround();
@@ -91,6 +93,8 @@ public class Enemy : NPC
                 {
                     if (!WallCheck() && FloorCheck() && !InEscalator) //Move if we DON'T hit a wall and if we DO hit a floor
                     {
+                       
+                        
                         rb.velocity = transform.right * PatrolSpeed;
 
                         if (WallCheck())
@@ -239,7 +243,17 @@ public class Enemy : NPC
 
     public void Shoot() //Shoot at the player if spotted and in range
     {
-        Instantiate(BulletPrefab, transform.position, transform.rotation);
+        if (Random.Range(-10.0f, 10.0f) > 0)
+        {
+            e_animator.Play("E-IdleFire", 0, 0f);
+            Instantiate(BulletPrefab, new Vector3(transform.position.x, transform.position.y + 0.2f, 0), transform.rotation);
+        }
+        else {
+            e_animator.Play("E-CrouchFire", 0, 0f);
+            Instantiate(BulletPrefab, new Vector3(transform.position.x, transform.position.y - 0.2f, 0), transform.rotation);
+        }
+        //e_animator.SetFloat("Horizontal", 0);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -266,8 +280,11 @@ public class Enemy : NPC
 
     private bool isdead=false;
     public void dead() {
-
+        
         if (!isdead) {
+            
+            
+            
             isdead = true;
             Destroy(this.gameObject);
         }
