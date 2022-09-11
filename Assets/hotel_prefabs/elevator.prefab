@@ -55,10 +55,10 @@ MonoBehaviour:
     m_Bits: 64
   speed: 2
   ElevatorWaitTime: 3
-  StopLocationBottom: 0.12
-  StopLocationTop: 0
+  StopLocationBottom: 0
+  StopLocationTop: -0.12
   RoofLoc: 1.2
-  FloorLoc: -0.05
+  FloorLoc: -0.25
 --- !u!61 &8693876609827202559
 BoxCollider2D:
   m_ObjectHideFlags: 0
