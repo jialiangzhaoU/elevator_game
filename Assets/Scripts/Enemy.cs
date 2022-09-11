@@ -40,7 +40,9 @@ public class Enemy : NPC
 
     void Update()
     {
-       
+        
+        //print(rb.velocity.magnitude);
+        
         ElevatorCheck();
         if (alerted)
         {
@@ -62,6 +64,12 @@ public class Enemy : NPC
         }
         
 
+    }
+
+    private void FixedUpdate()
+    {
+        e_animator.SetFloat("Speed", rb.velocity.magnitude); //Set Idle/Walk
+        print(e_animator.GetFloat("Speed"));
     }
 
     public void GetPlayerLoc(Vector3 Loc)
