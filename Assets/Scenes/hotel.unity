@@ -102875,7 +102875,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
@@ -103015,7 +103015,7 @@ MonoBehaviour:
   mc_animator: {fileID: 1370146019}
   audioWalk: {fileID: 1370146018}
   audioJump: {fileID: 1370146017}
-  alertSound: {fileID: 0}
+  alertSound: {fileID: 1370146026}
   rb: {fileID: 1370146023}
   speed: 3
   jumpforce: 250
@@ -103139,7 +103139,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0c6ddb6f50b55d340a5b73a5c5c3b834, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

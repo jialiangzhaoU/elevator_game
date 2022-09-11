@@ -46,8 +46,8 @@ public class playerMove : MonoBehaviour
     void Start() {
         headCheck_y=head.transform.localPosition.y;
         headCheck_x = head.transform.localPosition.x;
-        player_high = this.GetComponent<BoxCollider2D>().size.y;
-        player_weigth = this.GetComponent<BoxCollider2D>().size.x;
+        player_high = this.GetComponent<CapsuleCollider2D>().size.y;
+        player_weigth = this.GetComponent<CapsuleCollider2D>().size.x;
         facedirection = Input.GetAxisRaw("Horizontal");
         horizontalmove = Input.GetAxis("Horizontal");
     }
