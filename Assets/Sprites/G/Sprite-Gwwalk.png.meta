@@ -143,10 +143,10 @@ TextureImporter:
       name: Sprite-Gwwalk_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 7
+        y: 5
+        width: 17
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 451739f14ae090849ab4879657b3914e
-      internalID: -595454528
+      spriteID: 9307828dd7542c5409ec58ff7c506216
+      internalID: -578010801
       vertices: []
       indices: 
       edges: []
@@ -164,10 +164,10 @@ TextureImporter:
       name: Sprite-Gwwalk_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 39
+        y: 5
+        width: 17
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2f83bbd2a8520e4eb86a50a410aaa92
-      internalID: -189928641
+      spriteID: 6a184b0b750cba046a19471d674e6e9a
+      internalID: -1918933743
       vertices: []
       indices: 
       edges: []
@@ -185,10 +185,10 @@ TextureImporter:
       name: Sprite-Gwwalk_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 70
+        y: 5
+        width: 16
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 846103a09f86f0641abb8b22e724e714
-      internalID: 506723442
+      spriteID: 24ddc5d1d835ca24bb940411d6ece459
+      internalID: 1730604285
       vertices: []
       indices: 
       edges: []
@@ -213,9 +213,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-Gwwalk_0: -595454528
-      Sprite-Gwwalk_1: -189928641
-      Sprite-Gwwalk_2: 506723442
+      Sprite-Gwwalk_0: -578010801
+      Sprite-Gwwalk_1: -1918933743
+      Sprite-Gwwalk_2: 1730604285
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -14,7 +14,14 @@ public class fall_out : MonoBehaviour
     void Start()
     {
         temp_time=time;
-        foot = this.GetComponent<BoxCollider2D>();
+        if (this.gameObject.GetComponent<BoxCollider2D>())
+        {
+            foot = this.GetComponent<BoxCollider2D>();
+        }
+        else {
+            foot = this.GetComponent<CapsuleCollider2D>();
+        }
+        
     }
 
     // Update is called once per frame
@@ -28,10 +35,13 @@ public class fall_out : MonoBehaviour
         else {
             temp_time = time;
         }
-        if (this.transform.parent.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)
-        {
-            temp_time = time;
+        if (this.gameObject.GetComponent<BoxCollider2D>()) {
+            if (this.transform.parent.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)
+            {
+                temp_time = time;
+            }
         }
+         
         if (temp_time <= 0) 
         {
             if (!audioFall.isPlaying)
@@ -48,7 +58,8 @@ public class fall_out : MonoBehaviour
             else
             {
                 
-                Destroy(this.transform.parent.gameObject);
+                    this.transform.gameObject.GetComponent<Enemy>().dead();
+                
             }
         }
         

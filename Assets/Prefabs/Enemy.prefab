@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 7785152312605979833}
   - component: {fileID: 7785152312605979834}
   - component: {fileID: 7785152312605979835}
-  - component: {fileID: 7785152312605979832}
   - component: {fileID: 287973555}
-  - component: {fileID: 287973556}
+  - component: {fileID: 563708704}
+  - component: {fileID: 6436822750398868542}
+  - component: {fileID: -6222951497508228657}
+  - component: {fileID: 4337346279519638186}
+  - component: {fileID: 149280529257563674}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -30,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 7785152312605979836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.34, y: -3.67, z: 0}
-  m_LocalScale: {x: 1.4256, y: 3.4642, z: 1}
+  m_LocalScale: {x: 1.1, y: 0.9243445, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +79,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 929056707, guid: 5fcd3ff9e63d00448afefb122cf14c09, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,17 +109,100 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  LineOfSightDistance: 8
+  LineOfSightDistance: 2
   ToggleLineVisibility: 1
-  DistanceCheck: 3
-  PatrolSpeed: 4
+  DistanceCheck: 2.5
+  PatrolSpeed: 2
   ChaseSpeed: 0
   PlayerLocation: {x: 0, y: 0, z: 0}
   alerted: 0
-  AlertSound: {fileID: 7785152312605979832}
+  InEscalator: 0
+  InEscalatorArea: 0
+  EscalatorDestination: {x: 0, y: 0, z: 0}
   rb: {fileID: 287973555}
+  Waiting: 0
+  e_animator: {fileID: 149280529257563674}
+  ElevatorMask:
+    serializedVersion: 2
+    m_Bits: 128
   BulletPrefab: {fileID: 4176728354009353300, guid: 8e97e95f9373b534196fc32d4dc11d43, type: 3}
---- !u!82 &7785152312605979832
+--- !u!50 &287973555
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &563708704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee85e05d6131f5c4b8e93a588c19cfaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRepulse: 0
+  window:
+    serializedVersion: 2
+    m_Bits: 0
+  right_window: {fileID: 4212817462637347513, guid: 8f96ce9af5410d642844f2bfdf7857d2, type: 3}
+  left_window: {fileID: 4517760933071737316, guid: 8d745ef1e3f18114ab4dcedebe8b84bb, type: 3}
+--- !u!70 &6436822750398868542
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0038441743, y: 0.020584635}
+  m_Size: {x: 0.3, y: 0.7920575}
+  m_Direction: 0
+--- !u!114 &-6222951497508228657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751f2944a8624f34cb6407bd5f5c5b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFall: {fileID: 4337346279519638186}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  elevator:
+    serializedVersion: 2
+    m_Bits: 128
+  time: 0.5
+  temp_time: 0
+--- !u!82 &4337346279519638186
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +212,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c6ddb6f50b55d340a5b73a5c5c3b834, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -212,50 +298,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!50 &287973555
-Rigidbody2D:
+--- !u!95 &149280529257563674
+Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7785152312605979836}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 2
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &287973556
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7785152312605979836}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c846654ad11eb3d4f8abd9ea50b97a82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

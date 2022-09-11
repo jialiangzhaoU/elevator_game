@@ -29,7 +29,7 @@ public class air_attack : MonoBehaviour
         if (other.gameObject.GetComponent<repulse>())
         {
             other.gameObject.GetComponent<repulse>().isRepulse = true;
-            other.GetComponent<Rigidbody2D>() .AddForce(new Vector2(air_power* player.transform.localScale.x, 0));
+            other.GetComponent<Rigidbody2D>() .AddForce(new Vector2(air_power* player.transform.localScale.x, 200));
            
         }
     }

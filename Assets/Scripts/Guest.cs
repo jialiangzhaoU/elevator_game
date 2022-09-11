@@ -16,6 +16,7 @@ public class Guest : NPC
     {
         Enemy.AlertAction += Alert;
         AlertAction += Alert;
+        playerMove.BroadcastLocation += GetPlayerLoc;
     }
 
     private void OnDisable()
@@ -28,9 +29,15 @@ public class Guest : NPC
     {
         if (IsPlayerInRange() && !alerted)
         {
-            PlayerLocation = GameObject.FindObjectOfType<playerMove>().transform.position;
-            AlertAction(PlayerLocation);
+
+            AlertAction();
         }
+    }
+
+    public void GetPlayerLoc(Vector3 Loc)
+    {
+        PlayerLocation = Loc;
+        print("Getting Player Location!");
     }
 
 }

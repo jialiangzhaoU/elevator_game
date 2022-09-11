@@ -31,6 +31,8 @@ public class normal_el_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position - transform.up * StopLocationTop, transform.right * 0.6f, Color.green);
+        Debug.DrawRay(transform.position - transform.up * StopLocationBottom, transform.right * 0.6f, Color.green);
         if (!inPlayerControl)
         {
             Movement();
@@ -126,7 +128,7 @@ public class normal_el_move : MonoBehaviour
     {
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position - transform.up * FloorLoc, -transform.up * 0.2f, Color.red);
+            Debug.DrawRay(transform.position - transform.up * FloorLoc, -transform.up * 0.2f, Color.green);
         }
         return Physics2D.Raycast(transform.position - transform.up * FloorLoc, -transform.up, 0.2f, WallMask);
 
@@ -136,7 +138,7 @@ public class normal_el_move : MonoBehaviour
     {
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position + transform.up * RoofLoc, transform.up * 0.2f, Color.red);
+            Debug.DrawRay(transform.position + transform.up * RoofLoc, transform.up * 0.2f, Color.green);
         }
         return Physics2D.Raycast(transform.position + transform.up * RoofLoc, transform.up, 0.2f, WallMask);
 

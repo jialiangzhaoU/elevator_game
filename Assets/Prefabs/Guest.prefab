@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5113118026316880958}
   - component: {fileID: 5113118026316880959}
   - component: {fileID: 5113118026316880956}
-  - component: {fileID: 5113118026316880963}
+  - component: {fileID: 1844152460491583716}
   m_Layer: 10
   m_Name: Guest
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5113118026316880957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.2, y: -1.96, z: 0}
-  m_LocalScale: {x: 1.175, y: 3.2643, z: 1}
+  m_LocalPosition: {x: -11.7625, y: -1.96, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.05724907, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: -578010801, guid: b978c0ee641b94d4d90184d6788d0874, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  LineOfSightDistance: 8
+  LineOfSightDistance: 2
   ToggleLineVisibility: 1
   DistanceCheck: 3
   PatrolSpeed: 4
@@ -116,7 +116,6 @@ MonoBehaviour:
   InEscalator: 0
   InEscalatorArea: 0
   EscalatorDestination: {x: 0, y: 0, z: 0}
-  AlertSound: {fileID: 5113118026316880956}
   rb: {fileID: 5113118026316880959}
   Waiting: 0
   isTarget: 0
@@ -151,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c6ddb6f50b55d340a5b73a5c5c3b834, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d4e059a414b3654eb1b082f167b8ede, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -161,7 +160,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6742754
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -237,7 +236,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!61 &5113118026316880963
+--- !u!61 &1844152460491583716
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,12 +253,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.53125, y: 0.78125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.53125, y: 0.78125}
   m_EdgeRadius: 0
