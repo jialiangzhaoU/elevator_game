@@ -40,7 +40,8 @@ public class playerMove : MonoBehaviour
     private bool InEscalator;
     private bool InEscalatorArea;
     public Vector3 EscalatorDestination;
-
+    public float wait_time;
+    private float temp_time = 0;
     // Update is called once per frame
 
     void Start() {
@@ -68,17 +69,17 @@ public class playerMove : MonoBehaviour
       
         if (Input.GetButtonDown("EnterDoor") && InRangeofDoor)
         {
-            if (!InDoor)
+            if (!InDoor && temp_time <= 0)
             {
                 StartCoroutine(EnterDoor()); 
             }
-            else if (InDoor)
+            else if (InDoor && temp_time <= 0)
             {
                 StartCoroutine(ExitDoor()); 
             }
 
         }
-
+        temp_time -= Time.deltaTime;
         if (InEscalatorArea)
         {
             if (EscalatorDestination.y - transform.position.y > 0) //If the endpoint is Higher, We want to hit W to Ascend
@@ -270,9 +271,10 @@ public class playerMove : MonoBehaviour
     {
         InDoor = true;
         print("Entering Door");
-        rb.constraints = RigidbodyConstraints2D.FreezePosition; //Prevent player from sliding If moving while entering door
+        temp_time = wait_time;
+        // rb.constraints = RigidbodyConstraints2D.FreezePosition; //Prevent player from sliding If moving while entering door
         rb.velocity = new Vector2(0, 0);
-       // rb.bodyType = RigidbodyType2D.Static;
+        // rb.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
         this.gameObject.layer = 11;
         this.transform.Find("jumpCheck").gameObject.layer = 11;
@@ -283,10 +285,13 @@ public class playerMove : MonoBehaviour
 
     IEnumerator ExitDoor()
     {
+        
         print("Exiting Door");
-        yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
-        rb.constraints = RigidbodyConstraints2D.None;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.velocity = new Vector2(0, 0);
+        temp_time = wait_time;
+        yield return new WaitForSeconds(1f);// wait 1 sec for animation mc go out door
+      //  rb.constraints = RigidbodyConstraints2D.None;
+      //  rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         // rb.isKinematic = false;
         this.gameObject.layer = 8;
         this.transform.Find("jumpCheck").gameObject.layer = 8;
@@ -298,7 +303,12 @@ public class playerMove : MonoBehaviour
     public void Spotted()
     {
         spotted = true;
-        alertSound.Play();
+        if (!alertSound.isPlaying)
+        {
+            alertSound.Play();
+
+        }
+       
         StartCoroutine(LocationDisplayLoop());
     }
 

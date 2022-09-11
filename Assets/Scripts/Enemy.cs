@@ -263,4 +263,15 @@ public class Enemy : NPC
         }
     }
 
+
+    private bool isdead=false;
+    public void dead() {
+
+        if (!isdead) {
+            isdead = true;
+            Destroy(this.gameObject);
+        }
+        
+    }
+
 }
