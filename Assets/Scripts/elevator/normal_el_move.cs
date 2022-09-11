@@ -5,6 +5,7 @@ using UnityEngine;
 public class normal_el_move : MonoBehaviour
 {
     [Tooltip("Let line of sight be visible, for Dev Purposes")]
+    private AudioSource audioEle;
     public bool ToggleLineVisibility = false;
     [Tooltip("If the player is inside, let player control elevators movement")]
     public bool inPlayerControl; //We need to allow for the player to control the elevators movement while riding it
@@ -23,6 +24,7 @@ public class normal_el_move : MonoBehaviour
     void Start()
     {
         shouldPause = true;
+        audioEle = this.GetComponent<AudioSource>();
         //StartCoroutine(Movement());
     }
 
@@ -159,6 +161,11 @@ public class normal_el_move : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
+            if (!audioEle.isPlaying)
+            {
+                audioEle.Play();
+
+            } //walk
             print("Player in Elevator!");
             inPlayerControl = true;
         }
@@ -168,6 +175,7 @@ public class normal_el_move : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
+            audioEle.Pause();
             print("Player Left Elevator!");
             inPlayerControl = false;
         }

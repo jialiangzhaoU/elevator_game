@@ -258,20 +258,23 @@ public class playerMove : MonoBehaviour
 
     IEnumerator EnterDoor()
     {
+        InDoor = true;
         print("Entering Door");
         rb.velocity = new Vector2(0, 0);
+       // rb.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
         this.gameObject.layer = 11;
         this.transform.Find("jumpCheck").gameObject.layer = 11;
         this.transform.Find("headCheck").gameObject.layer = 11;
         this.GetComponent<Renderer>().enabled = false;
-        InDoor = true;
+        
     }
 
     IEnumerator ExitDoor()
     {
         print("Exiting Door");
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
+      // rb.isKinematic = false;
         this.gameObject.layer = 8;
         this.transform.Find("jumpCheck").gameObject.layer = 8;
         this.transform.Find("headCheck").gameObject.layer = 8;
