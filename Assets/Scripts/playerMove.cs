@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class playerMove : MonoBehaviour
 {
 
+    public delegate void Broadcast(Vector3 Loc);
+    public static event Broadcast BroadcastLocation;
+
     //public Animator mc_animator;
 
     public Animator mc_animator;
     public AudioSource audioWalk;
     public AudioSource audioJump;
+    public AudioSource alertSound;
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
@@ -29,6 +33,7 @@ public class playerMove : MonoBehaviour
     public float facedirection;
     public float horizontalmove ;
     public string lose_name;
+    public bool spotted;
     public bool InDoor;
     public bool InRangeofDoor;
     public bool Disguised;
@@ -47,6 +52,12 @@ public class playerMove : MonoBehaviour
         facedirection = Input.GetAxisRaw("Horizontal");
         horizontalmove = Input.GetAxis("Horizontal");
     }
+    private void OnEnable()
+    {
+        Guest.AlertAction += Spotted;
+        Enemy.AlertAction += Spotted;
+    }
+
     void Update()
     {
         //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
@@ -232,6 +243,25 @@ public class playerMove : MonoBehaviour
 
     }
 
+    public void Spotted()
+    {
+        spotted = true;
+        alertSound.Play();
+        StartCoroutine(LocationDisplayLoop());
+    }
+
+
+
+    IEnumerator LocationDisplayLoop()
+    {
+        while (spotted)
+        {
+            BroadcastLocation(transform.position);
+            yield return new WaitForSeconds(3);
+        }
+    }
+
+
     public void player_dead() {
         
             StartCoroutine(lose_menu());
@@ -255,6 +285,7 @@ public class playerMove : MonoBehaviour
     {
         print("Entering Door");
         rb.velocity = new Vector2(0, 0);
+        rb.constraints = RigidbodyConstraints2D.FreezePosition; //Prevent player from sliding If moving while entering door
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
         this.gameObject.layer = 11;
         this.transform.Find("jumpCheck").gameObject.layer = 11;
@@ -267,6 +298,8 @@ public class playerMove : MonoBehaviour
     {
         print("Exiting Door");
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         this.gameObject.layer = 8;
         this.transform.Find("jumpCheck").gameObject.layer = 8;
         this.transform.Find("headCheck").gameObject.layer = 8;

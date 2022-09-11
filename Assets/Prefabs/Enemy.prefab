@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7785152312605979835}
   - component: {fileID: 7785152312605979832}
   - component: {fileID: 287973555}
-  - component: {fileID: 287973556}
+  - component: {fileID: 563708704}
+  - component: {fileID: 6436822750398868542}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7785152312605979836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.34, y: -3.67, z: 0}
-  m_LocalScale: {x: 1.4256, y: 3.4642, z: 1}
+  m_LocalScale: {x: 1.1, y: 0.9243445, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +77,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 929056707, guid: 5fcd3ff9e63d00448afefb122cf14c09, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,13 +109,19 @@ MonoBehaviour:
     m_Bits: 64
   LineOfSightDistance: 8
   ToggleLineVisibility: 1
-  DistanceCheck: 3
+  DistanceCheck: 2
   PatrolSpeed: 4
   ChaseSpeed: 0
   PlayerLocation: {x: 0, y: 0, z: 0}
   alerted: 0
-  AlertSound: {fileID: 7785152312605979832}
+  InEscalator: 0
+  InEscalatorArea: 0
+  EscalatorDestination: {x: 0, y: 0, z: 0}
   rb: {fileID: 287973555}
+  Waiting: 0
+  ElevatorMask:
+    serializedVersion: 2
+    m_Bits: 128
   BulletPrefab: {fileID: 4176728354009353300, guid: 8e97e95f9373b534196fc32d4dc11d43, type: 3}
 --- !u!82 &7785152312605979832
 AudioSource:
@@ -233,8 +240,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &287973556
-BoxCollider2D:
+--- !u!114 &563708704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee85e05d6131f5c4b8e93a588c19cfaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRepulse: 0
+  window:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!70 &6436822750398868542
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -246,16 +269,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.0038441743, y: 0.020584635}
+  m_Size: {x: 0.33883962, y: 0.7920575}
+  m_Direction: 0
