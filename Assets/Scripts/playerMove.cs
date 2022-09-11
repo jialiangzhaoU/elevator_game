@@ -175,6 +175,7 @@ public class playerMove : MonoBehaviour
             {
                 print("Player dies due to being squashed");
                 player_dead();
+                
             }
             
         }
@@ -241,8 +242,12 @@ public class playerMove : MonoBehaviour
 
     IEnumerator lose_menu()
     {
-        yield return new WaitForSeconds(2);
-       // SceneManager.LoadScene(lose_name);
+        if (!mc_animator.GetBool("dead")) {
+            mc_animator.SetBool("dead", true);
+        }
+        
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(lose_name);
 
 
     }
