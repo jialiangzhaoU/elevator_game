@@ -29,8 +29,9 @@ public class punch_attack : MonoBehaviour
     }
 
     IEnumerator enemyDead(Collider2D other) {
-       
-       yield return new WaitForSeconds(0.3f);
+
+       other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
+        yield return new WaitForSeconds(0.3f);
 
         
             other.gameObject.GetComponent<Enemy>().dead();

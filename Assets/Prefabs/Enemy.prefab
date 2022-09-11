@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6436822750398868542}
   - component: {fileID: -6222951497508228657}
   - component: {fileID: 4337346279519638186}
+  - component: {fileID: 149280529257563674}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -120,6 +121,7 @@ MonoBehaviour:
   EscalatorDestination: {x: 0, y: 0, z: 0}
   rb: {fileID: 287973555}
   Waiting: 0
+  e_animator: {fileID: 149280529257563674}
   ElevatorMask:
     serializedVersion: 2
     m_Bits: 128
@@ -294,3 +296,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &149280529257563674
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c846654ad11eb3d4f8abd9ea50b97a82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

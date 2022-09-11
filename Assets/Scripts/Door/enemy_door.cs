@@ -7,6 +7,7 @@ using UnityEngine;
 public class enemy_door : MonoBehaviour
 {
     private float create_time;
+    public Animator door_animator;
     public GameObject enemy;
     private float time;
     private float a;
@@ -16,7 +17,8 @@ public class enemy_door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        create_time= Random.Range(2.0f, 10.0f);
+        door_animator = this.GetComponent<Animator>();
+        create_time = Random.Range(2.0f, 10.0f);
         time =create_time;
          a = Random.Range(-10.0f, 10.0f);
         cam = UnityEngine.Camera.main;
@@ -51,6 +53,8 @@ public class enemy_door : MonoBehaviour
         {
             if (a < 0 && all.transform.childCount<=6)
             {
+                door_animator.Play("door_open", 0, 0f);
+                // door_animator.SetBool("open",true);
                 GameObject guy=Instantiate(enemy, this.gameObject.transform.position, Quaternion.identity);
                 guy.transform.parent = all.transform;
             }
