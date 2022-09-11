@@ -163,6 +163,8 @@ MonoBehaviour:
   window:
     serializedVersion: 2
     m_Bits: 0
+  right_window: {fileID: 4212817462637347513, guid: 8f96ce9af5410d642844f2bfdf7857d2, type: 3}
+  left_window: {fileID: 4517760933071737316, guid: 8d745ef1e3f18114ab4dcedebe8b84bb, type: 3}
 --- !u!70 &6436822750398868542
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
