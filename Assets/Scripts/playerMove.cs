@@ -272,7 +272,7 @@ public class playerMove : MonoBehaviour
         InDoor = true;
         print("Entering Door");
         temp_time = wait_time;
-        // rb.constraints = RigidbodyConstraints2D.FreezePosition; //Prevent player from sliding If moving while entering door
+        /* rb.constraints = RigidbodyConstraints2D.FreezePosition;*/ //Prevent player from sliding If moving while entering door
         rb.velocity = new Vector2(0, 0);
         // rb.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
@@ -290,8 +290,8 @@ public class playerMove : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         temp_time = wait_time;
         yield return new WaitForSeconds(1f);// wait 1 sec for animation mc go out door
-      //  rb.constraints = RigidbodyConstraints2D.None;
-      //  rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //rb.constraints = RigidbodyConstraints2D.None;
+        //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         // rb.isKinematic = false;
         this.gameObject.layer = 8;
         this.transform.Find("jumpCheck").gameObject.layer = 8;

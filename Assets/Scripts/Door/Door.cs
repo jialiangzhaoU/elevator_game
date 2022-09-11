@@ -14,9 +14,9 @@ public class Door : MonoBehaviour
             collision.gameObject.GetComponent<playerMove>().InRangeofDoor = true;
             if (collision.gameObject.GetComponent<playerMove>().InDoor)
             {
-                doorOpen.SetBool("open", true);
+                doorOpen.Play("open", 0, 0f);
                 inDoor = true;
-                StartCoroutine(keep_close());
+               // StartCoroutine(keep_close());
                 
             }
             
@@ -26,10 +26,10 @@ public class Door : MonoBehaviour
         {
             if (!collision.gameObject.GetComponent<playerMove>().InDoor && inDoor)
             {
-                doorOpen.SetBool("open", true);
+                doorOpen.Play("open", 0, 0f);
+                
                 inDoor = false;
-                StartCoroutine(keep_close());
-
+               
             }
         }
     }
@@ -44,11 +44,11 @@ public class Door : MonoBehaviour
     }
   
 
-    IEnumerator keep_close()
-    {
+    //IEnumerator keep_close()
+    //{
  
 
-        yield return new WaitForSeconds(0.5f);
-        doorOpen.SetBool("open", false);
-    }
+    //    yield return new WaitForSeconds(0.5f);
+    //    doorOpen.SetBool("open", false);
+    //}
 }
