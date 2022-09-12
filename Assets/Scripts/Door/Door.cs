@@ -6,18 +6,26 @@ public class Door : MonoBehaviour
 {
     public Animator doorOpen;
     private bool inDoor=false;
+    public bool DisguiseDoor;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 8 && collision.gameObject.GetComponent<playerMove>())
         {
-           
-            collision.gameObject.GetComponent<playerMove>().InRangeofDoor = true;
-            if (collision.gameObject.GetComponent<playerMove>().InDoor)
+            playerMove player = collision.gameObject.GetComponent<playerMove>();
+            player.InRangeofDoor = true;
+            if (player.InDoor)
             {
                 doorOpen.Play("open", 0, 0f);
                 inDoor = true;
-               // StartCoroutine(keep_close());
-                
+                if (DisguiseDoor)
+                {
+                    collision.gameObject.GetComponent<playerMove>().Disguised = true;
+                }
+
+
+
+                // StartCoroutine(keep_close());
+
             }
             
 
@@ -29,7 +37,8 @@ public class Door : MonoBehaviour
                 doorOpen.Play("open", 0, 0f);
                 
                 inDoor = false;
-               
+
+
             }
         }
     }

@@ -23,14 +23,18 @@ public class Guest : NPC
     {
         Enemy.AlertAction -= Alert;
         AlertAction -= Alert;
+        playerMove.BroadcastLocation -= GetPlayerLoc;
     }
 
     private void Update()
     {
         if (IsPlayerInRange() && !alerted)
         {
-
-            AlertAction();
+             if (!GameObject.FindObjectOfType<playerMove>().Disguised) //Do NOT alert if player is disguised. Kinda lame using FindObject but whatever.
+            {
+                AlertAction();
+            }
+            
         }
     }
 
