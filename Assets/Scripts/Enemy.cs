@@ -34,7 +34,9 @@ public class Enemy : NPC
 
     private void OnDisable()
     {
-
+        playerMove.BroadcastLocation -= GetPlayerLoc;
+        AlertAction -= Alert;
+        Guest.AlertAction -= Alert;
     }
 
     void Update()
@@ -299,9 +301,7 @@ public class Enemy : NPC
 
             player.StartCoroutine(player.JustKilled());
 
-            playerMove.BroadcastLocation -= GetPlayerLoc;
-            AlertAction -= Alert;
-            Guest.AlertAction -= Alert;
+
 
             isdead = true;
             Destroy(this.gameObject);
