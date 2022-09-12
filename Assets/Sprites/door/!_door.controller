@@ -50,7 +50,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: door
+  m_Name: '!_door'
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -87,7 +87,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4dfd7590c41648945836a0bef3a99d27, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8a1c742954f67824bb1ae96c0d765a9c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -139,7 +139,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9527f522ebb1b054885b1f13aead77d4, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4ea01905f220a76459891f6617a65fd4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

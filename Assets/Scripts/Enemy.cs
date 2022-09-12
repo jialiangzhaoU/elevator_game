@@ -12,7 +12,8 @@ public class Enemy : NPC
     bool inElevator;
     bool hitWall;
     public Bullet BulletPrefab;
-    
+    public playerMove player;
+
 
     //If players y value is a certain distance higher or lower than our distance, then find an escalator or elevator to take
     //Enemy needs to resume patrolling when player is lost
@@ -20,7 +21,7 @@ public class Enemy : NPC
 
     void Start()
     {
-        
+        player = GameObject.FindObjectOfType<playerMove>();
         StartCoroutine(Patrol());
     }
 
@@ -33,9 +34,7 @@ public class Enemy : NPC
 
     private void OnDisable()
     {
-        playerMove.BroadcastLocation -= GetPlayerLoc;
-        AlertAction -= Alert;
-        Guest.AlertAction -= Alert;
+
     }
 
     void Update()
@@ -55,7 +54,7 @@ public class Enemy : NPC
 
         if (IsPlayerInRange() && !alerted)
         {
-            if (!GameObject.FindObjectOfType<playerMove>().Disguised) //Do NOT alert if player is disguised. Kinda lame using FindObject but whatever.
+            if (!player.Disguised) //Do NOT alert if player is disguised. Kinda lame using FindObject but whatever.
             {
                 AlertAction();
             }
@@ -297,9 +296,13 @@ public class Enemy : NPC
     public void dead() {
         
         if (!isdead) {
-            
-            
-            
+
+            player.StartCoroutine(player.JustKilled());
+
+            playerMove.BroadcastLocation -= GetPlayerLoc;
+            AlertAction -= Alert;
+            Guest.AlertAction -= Alert;
+
             isdead = true;
             Destroy(this.gameObject);
         }

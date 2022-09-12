@@ -7,6 +7,7 @@ public class Guest : NPC
     public Animator g_animator;
     public static event AlertOthers AlertAction;
     public bool isTarget;
+    public playerMove player;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class Guest : NPC
 
     private void OnEnable()
     {
+        player = GameObject.FindObjectOfType<playerMove>();
         Enemy.AlertAction += Alert;
         AlertAction += Alert;
         playerMove.BroadcastLocation += GetPlayerLoc;
@@ -22,9 +24,7 @@ public class Guest : NPC
 
     private void OnDisable()
     {
-        Enemy.AlertAction -= Alert;
-        AlertAction -= Alert;
-        playerMove.BroadcastLocation -= GetPlayerLoc;
+
     }
 
     private void Update()
@@ -32,9 +32,12 @@ public class Guest : NPC
         
         if (IsPlayerInRange() && !alerted)
         {
-             if (!GameObject.FindObjectOfType<playerMove>().Disguised) //Do NOT alert if player is disguised. Kinda lame using FindObject but whatever.
+
+
+             if (player.Bloodstained) //Do NOT alert if player is disguised. 
             {
-                AlertAction();
+                
+                
             }
             
         }
@@ -51,15 +54,18 @@ public class Guest : NPC
     {
         if (!isdead)
         {
-            isdead = true;
-           
+            Enemy.AlertAction -= Alert;
+            AlertAction -= Alert;
+            playerMove.BroadcastLocation -= GetPlayerLoc;
+            player.StartCoroutine(player.JustKilled());
+            isdead = true;        
             Destroy(this.gameObject);
         }
 
     }
     private void FixedUpdate()
     {
-        print(this.rb.velocity.magnitude);
+        //print(this.rb.velocity.magnitude);
         if (!g_animator.GetBool("dead"))
         {
             g_animator.SetFloat("speed", this.rb.velocity.magnitude);
