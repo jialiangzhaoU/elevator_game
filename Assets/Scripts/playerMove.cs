@@ -25,7 +25,7 @@ public class playerMove : MonoBehaviour
     private bool jump_good = false;
     public Collider2D coll;
     public Collider2D head;
-    private bool squat;
+    public bool squat;
     public bool spotted;
     private float player_high;
     private float player_weigth;
