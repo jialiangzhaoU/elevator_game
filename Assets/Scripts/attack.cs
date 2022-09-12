@@ -31,6 +31,7 @@ public class attack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z) && temp_time<=0)
         {
+            GetComponent<playerMove>().BreakDisguise();
             StartCoroutine(StartAttack());
         }
     }

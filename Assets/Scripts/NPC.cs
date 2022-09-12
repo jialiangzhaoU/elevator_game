@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    public delegate void AlertOthers(Vector3 Loc);
+    public delegate void AlertOthers();
 
     [Tooltip("So the Enemy distinguishes between player and other entities")]
     public LayerMask PlayerMask;
@@ -90,6 +90,7 @@ public class NPC : MonoBehaviour
         return (Physics2D.Raycast(transform.position, transform.right, DistanceCheck, WallMask));
     }
     //Draw a line Down
+    //Returns false if there's a pit in front
     public bool FloorCheck() //Check if there's floor in front of us, i.e., if we hit a pit without an elevator to stop us
     {
         if (ToggleLineVisibility)
@@ -119,9 +120,9 @@ public class NPC : MonoBehaviour
         }
     }
 
-    public virtual void Alert(Vector3 Loc)
+    public virtual void Alert()
     {
         alerted = true;
-        print(Loc);
+        //print(Loc);
     }
 }

@@ -6,21 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class playerMove : MonoBehaviour
 {
-
+    public GameObject all_E;
+    public delegate void Broadcast(Vector3 Loc);
+    public static event Broadcast BroadcastLocation;
     //public Animator mc_animator;
 
     public Animator mc_animator;
     public AudioSource audioWalk;
     public AudioSource audioJump;
+    public AudioSource alertSound;
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
+    public int DisguiseLength; //How long does our disguise last?
     public LayerMask ground;
     public LayerMask headCheck;
     private bool jump_good = false;
     public Collider2D coll;
     public Collider2D head;
     private bool squat;
+    public bool spotted;
     private float player_high;
     private float player_weigth;
     private float headCheck_y;
@@ -35,18 +40,26 @@ public class playerMove : MonoBehaviour
     public bool InElevator;
     private bool InEscalator;
     private bool InEscalatorArea;
+    public bool Bloodstained; //Player has just killed, if a guest spots them while this is true, activate alert.
     public Vector3 EscalatorDestination;
-
+    public float wait_time;
+    private float temp_time = 0;
     // Update is called once per frame
 
     void Start() {
         headCheck_y=head.transform.localPosition.y;
         headCheck_x = head.transform.localPosition.x;
-        player_high = this.GetComponent<BoxCollider2D>().size.y;
-        player_weigth = this.GetComponent<BoxCollider2D>().size.x;
+        player_high = this.GetComponent<CapsuleCollider2D>().size.y;
+        player_weigth = this.GetComponent<CapsuleCollider2D>().size.x;
         facedirection = Input.GetAxisRaw("Horizontal");
         horizontalmove = Input.GetAxis("Horizontal");
     }
+    private void OnEnable()
+    {
+        Guest.AlertAction += Spotted;
+        Enemy.AlertAction += Spotted;
+    }
+
     void Update()
     {
         //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
@@ -58,17 +71,17 @@ public class playerMove : MonoBehaviour
       
         if (Input.GetButtonDown("EnterDoor") && InRangeofDoor)
         {
-            if (!InDoor)
+            if (!InDoor && temp_time <= 0)
             {
                 StartCoroutine(EnterDoor()); 
             }
-            else if (InDoor)
+            else if (InDoor && temp_time <= 0)
             {
                 StartCoroutine(ExitDoor()); 
             }
 
         }
-
+        temp_time -= Time.deltaTime;
         if (InEscalatorArea)
         {
             if (EscalatorDestination.y - transform.position.y > 0) //If the endpoint is Higher, We want to hit W to Ascend
@@ -175,6 +188,7 @@ public class playerMove : MonoBehaviour
             {
                 print("Player dies due to being squashed");
                 player_dead();
+                
             }
             
         }
@@ -192,13 +206,13 @@ public class playerMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jump_good == true)
         {
             
-                audioJump.Play();
+            audioJump.Play();
 
             
             rb.AddForce(new Vector2(0, jumpforce));
             head.transform.localPosition = new Vector2(headCheck_x, headCheck_y);
-            this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-            this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high);
+            this.GetComponent<CapsuleCollider2D>().offset = new Vector2(0f, 0f);
+            this.GetComponent<CapsuleCollider2D>().size = new Vector2(player_weigth, player_high);
            
             squat = false;
 
@@ -209,8 +223,8 @@ public class playerMove : MonoBehaviour
             {
                 
                 head.transform.localPosition = new Vector2(headCheck_x, headCheck_y);
-                this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-                this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high);
+                this.GetComponent<CapsuleCollider2D>().offset = new Vector2(0f, 0f);
+                this.GetComponent<CapsuleCollider2D>().size = new Vector2(player_weigth, player_high);
                 squat = false;
 
             }
@@ -220,8 +234,8 @@ public class playerMove : MonoBehaviour
                 {
               
                     head.transform.localPosition = new Vector2(headCheck_x, headCheck_y - player_high/2);
-                    this.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -player_high / 4);
-                    this.GetComponent<BoxCollider2D>().size = new Vector2(player_weigth, player_high / 2);
+                    this.GetComponent<CapsuleCollider2D>().offset = new Vector2(0f, -player_high / 4);
+                    this.GetComponent<CapsuleCollider2D>().size = new Vector2(player_weigth, player_high / 2);
                     squat = true;
                 }
 
@@ -233,16 +247,31 @@ public class playerMove : MonoBehaviour
     }
 
     public void player_dead() {
-        
-            StartCoroutine(lose_menu());
+
+       
+        Transform[] ts = all_E.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            if (t.gameObject.GetComponent<Enemy>())
+            {
+                t.gameObject.GetComponent<Enemy>().dead();
+            }
+
+        }
+        StartCoroutine(lose_menu());
         
         
     }
 
     IEnumerator lose_menu()
     {
-        yield return new WaitForSeconds(2);
-       // SceneManager.LoadScene(lose_name);
+        if (!mc_animator.GetBool("dead")) {
+            mc_animator.SetBool("dead", true);
+        }
+        
+        yield return new WaitForSeconds(1);
+        
+        SceneManager.LoadScene(lose_name);
 
 
     }
@@ -253,20 +282,35 @@ public class playerMove : MonoBehaviour
 
     IEnumerator EnterDoor()
     {
+        InDoor = true;
         print("Entering Door");
+        temp_time = wait_time;
+        /* rb.constraints = RigidbodyConstraints2D.FreezePosition;*/ //Prevent player from sliding If moving while entering door
         rb.velocity = new Vector2(0, 0);
+        // rb.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
         this.gameObject.layer = 11;
         this.transform.Find("jumpCheck").gameObject.layer = 11;
         this.transform.Find("headCheck").gameObject.layer = 11;
         this.GetComponent<Renderer>().enabled = false;
-        InDoor = true;
+        
     }
 
     IEnumerator ExitDoor()
     {
+        
         print("Exiting Door");
-        yield return new WaitForSeconds(1);// wait 1 sec for animation mc go out door
+        rb.velocity = new Vector2(0, 0);
+        temp_time = wait_time;
+        yield return new WaitForSeconds(1f);// wait 1 sec for animation mc go out door
+        if (Disguised)
+        {
+            StartCoroutine(DisguiseCountdown());
+        }
+      
+        //rb.constraints = RigidbodyConstraints2D.None;
+        //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // rb.isKinematic = false;
         this.gameObject.layer = 8;
         this.transform.Find("jumpCheck").gameObject.layer = 8;
         this.transform.Find("headCheck").gameObject.layer = 8;
@@ -274,6 +318,61 @@ public class playerMove : MonoBehaviour
         InDoor = false;
     }
 
+    public IEnumerator JustKilled()
+    {
+        //print("Committed Murder!");
+        Bloodstained = true;
+        int bloodied = 3;
+        while (bloodied > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            bloodied--;
+
+        }
+        Bloodstained = false;
+    }
+
+    public IEnumerator DisguiseCountdown()
+    {
+        print("Getting Disguise!");
+        Disguised = true;
+        mc_animator.SetBool("Disguised", Disguised);
+        while (DisguiseLength > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            DisguiseLength -= 1;
+        }
+        BreakDisguise();
+    }
+
+    public void BreakDisguise()
+    {
+        Disguised = false;
+        mc_animator.SetBool("Disguised", Disguised);
+    }
+
+    public void Spotted()
+    {
+        spotted = true;
+        if (alertSound != null) { 
+            if (!alertSound.isPlaying)
+            {
+                alertSound.Play();
+
+            }
+        }
+       
+        StartCoroutine(LocationDisplayLoop());
+    }
+
+    IEnumerator LocationDisplayLoop()
+    {
+        while (spotted)
+        {
+            BroadcastLocation(transform.position);
+            yield return new WaitForSeconds(3);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -955,6 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win_name: win
+  speed: 0
+  player: {fileID: 0}
+  ufo_object: {fileID: 0}
 --- !u!1 &988058477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,6 +2630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751f2944a8624f34cb6407bd5f5c5b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioFall: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 64
