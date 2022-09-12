@@ -55,7 +55,11 @@ public class Enemy : NPC
 
         if (IsPlayerInRange() && !alerted)
         {
-            AlertAction();
+            if (!GameObject.FindObjectOfType<playerMove>().Disguised) //Do NOT alert if player is disguised. Kinda lame using FindObject but whatever.
+            {
+                AlertAction();
+            }
+               
         }
 
         if (InEscalator)

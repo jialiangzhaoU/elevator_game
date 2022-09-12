@@ -18,6 +18,7 @@ public class playerMove : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public float jumpforce;
+    public int DisguiseLength; //How long does our disguise last?
     public LayerMask ground;
     public LayerMask headCheck;
     private bool jump_good = false;
@@ -204,7 +205,7 @@ public class playerMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jump_good == true)
         {
             
-                audioJump.Play();
+            audioJump.Play();
 
             
             rb.AddForce(new Vector2(0, jumpforce));
@@ -290,6 +291,11 @@ public class playerMove : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         temp_time = wait_time;
         yield return new WaitForSeconds(1f);// wait 1 sec for animation mc go out door
+        if (Disguised)
+        {
+            StartCoroutine(DisguiseCountdown());
+        }
+      
         //rb.constraints = RigidbodyConstraints2D.None;
         //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         // rb.isKinematic = false;
@@ -298,6 +304,25 @@ public class playerMove : MonoBehaviour
         this.transform.Find("headCheck").gameObject.layer = 8;
         this.GetComponent<Renderer>().enabled = true;
         InDoor = false;
+    }
+
+    public IEnumerator DisguiseCountdown()
+    {
+        print("Getting Disguise!");
+        Disguised = true;
+        mc_animator.SetBool("Disguised", Disguised);
+        while (DisguiseLength > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            DisguiseLength -= 1;
+        }
+        BreakDisguise();
+    }
+
+    public void BreakDisguise()
+    {
+        Disguised = false;
+        mc_animator.SetBool("Disguised", Disguised);
     }
 
     public void Spotted()
