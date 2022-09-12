@@ -92,12 +92,12 @@ public class Enemy : NPC
         while (alerted)
         {
 
-            yield return new WaitForSeconds(Random.Range(3.0f, 6.0f));
+            
             if (Vector3.Dot((PlayerLocation - transform.position).normalized, transform.right) < 0) 
             {
                 TurnAround();
             }
-
+            yield return new WaitForSeconds(Random.Range(2.0f, 5.0f));
             Shoot();
             //print("Players Location: " + PlayerLocation);
             //print("Enemies Location: " + transform.position);

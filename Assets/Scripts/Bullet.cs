@@ -26,7 +26,9 @@ public class Bullet : MonoBehaviour
         {
             //Do some Damage here
             playerMove player = collision.gameObject.GetComponent<playerMove>();
-
+            if (player!=null) {
+                player.player_dead();
+            }
             Destroy(this.gameObject);
         }
     }

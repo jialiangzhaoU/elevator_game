@@ -37,7 +37,7 @@ public class punch_attack : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
             scene_save.score += 100;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
 
            
             other.gameObject.GetComponent<Enemy>().dead();
