@@ -61,6 +61,12 @@ public class playerMove : MonoBehaviour
         Enemy.AlertAction += Spotted;
     }
 
+    public void OnDisable()
+    {
+        Guest.AlertAction -= Spotted;
+        Enemy.AlertAction -= Spotted;
+    }
+
     void Update()
     {
         //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));

@@ -24,7 +24,9 @@ public class Guest : NPC
 
     private void OnDisable()
     {
-
+        Enemy.AlertAction -= Alert;
+        AlertAction -= Alert;
+        playerMove.BroadcastLocation -= GetPlayerLoc;
     }
 
     private void Update()
@@ -54,9 +56,7 @@ public class Guest : NPC
     {
         if (!isdead)
         {
-            Enemy.AlertAction -= Alert;
-            AlertAction -= Alert;
-            playerMove.BroadcastLocation -= GetPlayerLoc;
+
             player.StartCoroutine(player.JustKilled());
             isdead = true;        
             Destroy(this.gameObject);
