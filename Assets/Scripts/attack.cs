@@ -13,23 +13,25 @@ public class attack : MonoBehaviour
     public Collider2D air;
     public float wait_time;
     private float temp_time =0;
+    private bool squat;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        squat = GetComponent<playerMove>().squat;
     }
 
     // Update is called once per frame
     void Update()
     {
+        squat = GetComponent<playerMove>().squat;
         temp_time -= Time.deltaTime;
         PlayerAttackJinZhan();
     }
 
     void PlayerAttackJinZhan()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && temp_time<=0)
+        if (Input.GetKeyDown(KeyCode.Z) && temp_time<=0 && !squat)
         {
             GetComponent<playerMove>().BreakDisguise();
             StartCoroutine(StartAttack());
