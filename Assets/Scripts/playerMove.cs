@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class playerMove : MonoBehaviour
 {
-
+    public GameObject all_E;
     public delegate void Broadcast(Vector3 Loc);
     public static event Broadcast BroadcastLocation;
     //public Animator mc_animator;
@@ -247,8 +247,18 @@ public class playerMove : MonoBehaviour
     }
 
     public void player_dead() {
-        
-            StartCoroutine(lose_menu());
+
+       
+        Transform[] ts = all_E.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            if (t.gameObject.GetComponent<Enemy>())
+            {
+                t.gameObject.GetComponent<Enemy>().dead();
+            }
+
+        }
+        StartCoroutine(lose_menu());
         
         
     }
@@ -260,6 +270,7 @@ public class playerMove : MonoBehaviour
         }
         
         yield return new WaitForSeconds(1);
+        
         SceneManager.LoadScene(lose_name);
 
 
@@ -343,10 +354,12 @@ public class playerMove : MonoBehaviour
     public void Spotted()
     {
         spotted = true;
-        if (!alertSound.isPlaying)
-        {
-            alertSound.Play();
+        if (alertSound != null) { 
+            if (!alertSound.isPlaying)
+            {
+                alertSound.Play();
 
+            }
         }
        
         StartCoroutine(LocationDisplayLoop());

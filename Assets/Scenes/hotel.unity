@@ -29874,8 +29874,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 111.966, y: -72.84}
-  m_SizeDelta: {x: 223.932, y: 145.681}
+  m_AnchoredPosition: {x: 111.966, y: -32.943207}
+  m_SizeDelta: {x: 223.932, y: 65.8874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &220449051
 MonoBehaviour:
@@ -29897,7 +29897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0aaab93da65ebf143b1100267f589a01, type: 3}
+  m_Sprite: {fileID: 1827558150, guid: 0aaab93da65ebf143b1100267f589a01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -107139,7 +107139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score_text: {fileID: 1488472223}
   blood: {fileID: 5159290338538811218, guid: 37644d76b644e0843ade23365aab8a0f, type: 3}
-  score: 0
 --- !u!4 &1310025073
 Transform:
   m_ObjectHideFlags: 0
@@ -107851,6 +107850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e525558c53ef9744d8c2948949c7d321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  all_E: {fileID: 1079584884}
   mc_animator: {fileID: 1370146019}
   audioWalk: {fileID: 1370146018}
   audioJump: {fileID: 1370146017}
@@ -107870,11 +107870,12 @@ MonoBehaviour:
   spotted: 0
   facedirection: 0
   horizontalmove: 0
-  lose_name: lose
+  lose_name: StartMenu_wenjia
   InDoor: 0
   InRangeofDoor: 0
   Disguised: 0
   InElevator: 0
+  Bloodstained: 0
   EscalatorDestination: {x: 0, y: 0, z: 0}
   wait_time: 2
 --- !u!50 &1370146023
@@ -120745,7 +120746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 211, y: -79}
+  m_AnchoredPosition: {x: 207, y: -40.887}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488472223
