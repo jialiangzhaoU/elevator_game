@@ -40,6 +40,7 @@ public class playerMove : MonoBehaviour
     public bool InElevator;
     private bool InEscalator;
     private bool InEscalatorArea;
+    public bool Bloodstained; //Player has just killed, if a guest spots them while this is true, activate alert.
     public Vector3 EscalatorDestination;
     public float wait_time;
     private float temp_time = 0;
@@ -304,6 +305,20 @@ public class playerMove : MonoBehaviour
         this.transform.Find("headCheck").gameObject.layer = 8;
         this.GetComponent<Renderer>().enabled = true;
         InDoor = false;
+    }
+
+    public IEnumerator JustKilled()
+    {
+        //print("Committed Murder!");
+        Bloodstained = true;
+        int bloodied = 3;
+        while (bloodied > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            bloodied--;
+
+        }
+        Bloodstained = false;
     }
 
     public IEnumerator DisguiseCountdown()
