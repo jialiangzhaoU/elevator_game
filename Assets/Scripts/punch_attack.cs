@@ -8,7 +8,7 @@ public class punch_attack : MonoBehaviour
 {
     public TMP_Text score_text;
     public GameObject blood;
-    public int score=0;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class punch_attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score_text.text = score.ToString();
+        score_text.text = scene_save.score.ToString();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -36,10 +36,10 @@ public class punch_attack : MonoBehaviour
         if (other.gameObject.GetComponent<Enemy>())
         {
             other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
-            score += 100;
-            yield return new WaitForSeconds(1f);
+            scene_save.score += 100;
+            yield return new WaitForSeconds(0.8f);
 
-
+           
             other.gameObject.GetComponent<Enemy>().dead();
 
 
@@ -52,10 +52,10 @@ public class punch_attack : MonoBehaviour
             other.gameObject.GetComponent<Guest>().g_animator.SetBool("dead",true);
             if (other.gameObject.GetComponent<Guest>().isTarget)
             {
-                score += 1000;
+                scene_save.score += 1000;
             }
             else {
-                score -= 500;
+                scene_save.score -= 500;
             }
             
             yield return new WaitForSeconds(0.8f);
