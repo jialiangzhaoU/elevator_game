@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6222951497508228657}
   - component: {fileID: 4337346279519638186}
   - component: {fileID: 149280529257563674}
+  - component: {fileID: -7890458686956540052}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -126,6 +127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   BulletPrefab: {fileID: 4176728354009353300, guid: 8e97e95f9373b534196fc32d4dc11d43, type: 3}
+  player: {fileID: 0}
 --- !u!50 &287973555
 Rigidbody2D:
   serializedVersion: 4
@@ -200,7 +202,7 @@ MonoBehaviour:
   elevator:
     serializedVersion: 2
     m_Bits: 128
-  time: 0.5
+  time: 1
   temp_time: 0
 --- !u!82 &4337346279519638186
 AudioSource:
@@ -212,7 +214,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cee4cd425358594449816037a40cd109, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 701856cb203a3244aa25d57339fcac1e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -318,3 +320,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7890458686956540052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7785152312605979836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a001168473c7b409fd7a2425f98001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dead_time: 3
+  cam: {fileID: 0}
+  isCheck: 0

@@ -62,7 +62,7 @@ public class to_win : MonoBehaviour
     IEnumerator win_wait(Collider2D other)
     {
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         SceneManager.LoadScene(win_name);
 
