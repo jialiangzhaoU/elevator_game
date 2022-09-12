@@ -30,17 +30,30 @@ public class punch_attack : MonoBehaviour
 
     IEnumerator enemyDead(Collider2D other) {
 
-       other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
-        yield return new WaitForSeconds(0.3f);
+        if (other.gameObject.GetComponent<Enemy>())
+        {
+            other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
+            yield return new WaitForSeconds(1f);
 
-        
+
             other.gameObject.GetComponent<Enemy>().dead();
-        
-        
-       
-        Instantiate(blood,
-                  other.gameObject.transform.position,
-                  other.gameObject.transform.rotation);
+
+
+
+            Instantiate(blood,
+                      other.gameObject.transform.position,
+                      other.gameObject.transform.rotation);
+        }
+        if(other.gameObject.GetComponent<Guest>()) {
+            other.gameObject.GetComponent<Guest>().g_animator.SetBool("dead",true);
+
+            
+            yield return new WaitForSeconds(0.8f);
+            
+
+            other.gameObject.GetComponent<Guest>().dead();
+        }
+      
     }
 
 

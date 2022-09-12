@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5113118026316880959}
   - component: {fileID: 5113118026316880956}
   - component: {fileID: 1844152460491583716}
+  - component: {fileID: 6983924082159693589}
+  - component: {fileID: -9116655736327998501}
   m_Layer: 10
   m_Name: Guest
   m_TagString: Untagged
@@ -118,6 +120,7 @@ MonoBehaviour:
   EscalatorDestination: {x: 0, y: 0, z: 0}
   rb: {fileID: 5113118026316880959}
   Waiting: 0
+  g_animator: {fileID: -9116655736327998501}
   isTarget: 0
 --- !u!50 &5113118026316880959
 Rigidbody2D:
@@ -262,3 +265,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.53125, y: 0.78125}
   m_EdgeRadius: 0
+--- !u!114 &6983924082159693589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113118026316880957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee85e05d6131f5c4b8e93a588c19cfaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRepulse: 0
+  window:
+    serializedVersion: 2
+    m_Bits: 0
+  right_window: {fileID: 4212817462637347513, guid: 8f96ce9af5410d642844f2bfdf7857d2, type: 3}
+  left_window: {fileID: 4517760933071737316, guid: 8d745ef1e3f18114ab4dcedebe8b84bb, type: 3}
+--- !u!95 &-9116655736327998501
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113118026316880957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c14191326742064896ef319a2ab0107, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

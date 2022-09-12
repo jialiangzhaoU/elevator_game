@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Guest : NPC
 {
+    public Animator g_animator;
     public static event AlertOthers AlertAction;
     public bool isTarget;
 
@@ -16,6 +17,7 @@ public class Guest : NPC
     {
         Enemy.AlertAction += Alert;
         AlertAction += Alert;
+        playerMove.BroadcastLocation += GetPlayerLoc;
     }
 
     private void OnDisable()
@@ -26,11 +28,40 @@ public class Guest : NPC
 
     private void Update()
     {
+        
         if (IsPlayerInRange() && !alerted)
         {
 
             AlertAction();
         }
+    }
+
+    public void GetPlayerLoc(Vector3 Loc)
+    {
+        PlayerLocation = Loc;
+        print("Getting Player Location!");
+    }
+
+    private bool isdead=false;
+    public void dead()
+    {
+        if (!isdead)
+        {
+            isdead = true;
+           
+            Destroy(this.gameObject);
+        }
+
+    }
+    private void FixedUpdate()
+    {
+        print(this.rb.velocity.magnitude);
+        if (!g_animator.GetBool("dead"))
+        {
+            g_animator.SetFloat("speed", this.rb.velocity.magnitude);
+        }
+        //Set Idle/Walk
+        //print(e_animator.GetFloat("Speed"));
     }
 
 }

@@ -2082,6 +2082,10 @@ PrefabInstance:
       propertyPath: isTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5113118026316880958, guid: 50c94da00db688441ac10e51516c0288, type: 3}
+      propertyPath: g_animator
+      value: 
+      objectReference: {fileID: 1634198640}
     - target: {fileID: 5113118026316880960, guid: 50c94da00db688441ac10e51516c0288, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -29655,7 +29659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8791edd96a0bbef48bd14345eb242914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  air_power: 300
+  air_power: 250
   player: {fileID: 1370146015}
 --- !u!4 &223118494
 Transform:
@@ -130104,6 +130108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00151e3832fd4474a983807c33ee52ac, type: 3}
+--- !u!95 &1634198640 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -9116655736327998501, guid: 50c94da00db688441ac10e51516c0288, type: 3}
+  m_PrefabInstance: {fileID: 153783073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1645984112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 604559304704411818, guid: 00151e3832fd4474a983807c33ee52ac, type: 3}
@@ -134710,6 +134719,7 @@ MonoBehaviour:
   EscalatorDestination: {x: 0, y: 0, z: 0}
   rb: {fileID: 1900198858}
   Waiting: 0
+  g_animator: {fileID: 1900198851}
   isTarget: 0
 --- !u!50 &1900198858
 Rigidbody2D:

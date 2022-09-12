@@ -68,14 +68,17 @@ public class Enemy : NPC
 
     private void FixedUpdate()
     {
-        e_animator.SetFloat("Speed", rb.velocity.magnitude); //Set Idle/Walk
-        print(e_animator.GetFloat("Speed"));
+        if (!e_animator.GetBool("dead")) {
+            e_animator.SetFloat("Speed", rb.velocity.magnitude);
+        }
+        //Set Idle/Walk
+        //print(e_animator.GetFloat("Speed"));
     }
 
     public void GetPlayerLoc(Vector3 Loc)
     {
         PlayerLocation = Loc;
-        print("Getting Player Location!");
+        //print("Getting Player Location!");
     }
 
 
