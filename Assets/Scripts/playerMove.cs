@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class playerMove : MonoBehaviour
 {
+    public Transform flag;
     public GameObject all_E;
     public delegate void Broadcast(Vector3 Loc);
     public static event Broadcast BroadcastLocation;
@@ -270,8 +271,16 @@ public class playerMove : MonoBehaviour
         }
         
         yield return new WaitForSeconds(1);
-        
-        SceneManager.LoadScene(lose_name);
+
+        if (mc_animator.GetBool("dead"))
+        {
+            mc_animator.SetBool("dead", false);
+        }
+       
+        this.GetComponent<Transform>().localPosition = 
+            new Vector3(flag.localPosition.x, flag.localPosition.y , 0);
+
+        //SceneManager.LoadScene(lose_name);
 
 
     }

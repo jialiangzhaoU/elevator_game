@@ -8,7 +8,7 @@ public class punch_attack : MonoBehaviour
 {
     public TMP_Text score_text;
     public GameObject blood;
-    
+    public Transform flag;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,9 @@ public class punch_attack : MonoBehaviour
             other.gameObject.GetComponent<Guest>().g_animator.SetBool("dead",true);
             if (other.gameObject.GetComponent<Guest>().isTarget)
             {
+                flag.localPosition =
+                  new Vector3(other.gameObject.transform.position.x, 
+                  other.gameObject.transform.position.y, 0);
                 scene_save.score += 1000;
             }
             else {
