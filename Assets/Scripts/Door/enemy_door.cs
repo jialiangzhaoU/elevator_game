@@ -37,8 +37,8 @@ public class enemy_door : MonoBehaviour
         else
             isCheck = true;
 
-        //if (!isCheck)
-            //create();
+        if (!isCheck)
+            create();
 
 
 
@@ -54,7 +54,7 @@ public class enemy_door : MonoBehaviour
             if (a < 0 && all.transform.childCount<=6)
             {
                 door_animator.Play("door_open", 0, 0f);
-                // door_animator.SetBool("open",true);
+                 door_animator.SetBool("open",true);
                 GameObject guy=Instantiate(enemy, this.gameObject.transform.position, Quaternion.identity);
                 guy.transform.parent = all.transform;
             }

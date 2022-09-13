@@ -272,7 +272,7 @@ public class playerMove : MonoBehaviour
             }
 
         }
-        scene_save.score -= 500;
+       
         StartCoroutine(lose_menu());
         
         
@@ -281,6 +281,7 @@ public class playerMove : MonoBehaviour
     IEnumerator lose_menu()
     {
         if (!mc_animator.GetBool("dead")) {
+            scene_save.score -= 500;
             mc_animator.SetBool("dead", true);
         }
         
