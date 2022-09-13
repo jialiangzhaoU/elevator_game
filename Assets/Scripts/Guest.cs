@@ -16,6 +16,7 @@ public class Guest : NPC
 
     private void OnEnable()
     {
+        playerMove.Stealth += UnAlert;
         player = GameObject.FindObjectOfType<playerMove>();
         Enemy.AlertAction += Alert;
         AlertAction += Alert;
@@ -24,6 +25,7 @@ public class Guest : NPC
 
     private void OnDisable()
     {
+        playerMove.Stealth -= UnAlert;
         Enemy.AlertAction -= Alert;
         AlertAction -= Alert;
         playerMove.BroadcastLocation -= GetPlayerLoc;
@@ -31,7 +33,7 @@ public class Guest : NPC
 
     private void Update()
     {
-        
+        FloorCheck();
         if (IsPlayerInRange() && !alerted)
         {
 
@@ -49,6 +51,11 @@ public class Guest : NPC
     {
         PlayerLocation = Loc;
         print("Getting Player Location!");
+    }
+
+    public void UnAlert()
+    {
+        alerted = false;
     }
 
     private bool isdead=false;

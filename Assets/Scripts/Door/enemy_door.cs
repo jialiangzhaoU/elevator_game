@@ -37,8 +37,8 @@ public class enemy_door : MonoBehaviour
         else
             isCheck = true;
 
-        if (!isCheck)
-            create();
+        //if (!isCheck)
+            //create();
 
 
 
