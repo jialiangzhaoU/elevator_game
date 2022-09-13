@@ -265,6 +265,7 @@ public class playerMove : MonoBehaviour
             }
 
         }
+        scene_save.score -= 500;
         StartCoroutine(lose_menu());
         
         
