@@ -27,6 +27,7 @@ public class Enemy : NPC
 
     private void OnEnable()
     {
+        playerMove.Stealth += UnAlert;
         playerMove.BroadcastLocation += GetPlayerLoc;
         AlertAction += Alert;
         Guest.AlertAction += Alert;
@@ -34,6 +35,7 @@ public class Enemy : NPC
 
     private void OnDisable()
     {
+        playerMove.Stealth -= UnAlert;
         playerMove.BroadcastLocation -= GetPlayerLoc;
         AlertAction -= Alert;
         Guest.AlertAction -= Alert;
@@ -41,9 +43,10 @@ public class Enemy : NPC
 
     void Update()
     {
-        
+
         //print(rb.velocity.magnitude);
-        
+        FloorCheck();
+        WallCheck();
         ElevatorCheck();
         if (alerted)
         {
@@ -128,6 +131,7 @@ public class Enemy : NPC
                     //yield return new WaitForSeconds(0.1f);
                     while (!FloorCheck() && !ElevatorCheck()) //If we've found an elevator shaft with no elevator, wait
                     {
+                        print("Waiting for Elevator...");
                         yield return new WaitForSeconds(1f);
 
                     }
@@ -212,6 +216,12 @@ public class Enemy : NPC
 
 
         }
+        StartCoroutine(Patrol()); //Return to Patrol state when player is lost
+    }
+
+    public void UnAlert()
+    {
+        alerted = false;
     }
 
     public bool InElevator()
@@ -236,10 +246,10 @@ public class Enemy : NPC
     {
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position - transform.up * 0.3f, transform.right * (DistanceCheck + 1), Color.blue);
+            Debug.DrawRay(transform.position + transform.up * 0.3f, transform.right * (DistanceCheck - 1), Color.blue);
         }
 
-        return (Physics2D.Raycast(transform.position - transform.up * 0.3f, transform.right, DistanceCheck + 1, ElevatorMask));
+        return (Physics2D.Raycast(transform.position + transform.up * 0.3f, transform.right, DistanceCheck - 1, ElevatorMask));
     }
 
     //Draw a line forward

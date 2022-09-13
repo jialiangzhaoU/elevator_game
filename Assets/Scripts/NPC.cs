@@ -34,7 +34,7 @@ public class NPC : MonoBehaviour
         //RaycastHit2D Hit = Physics2D.Raycast(transform.position, transform.forward * LineOfSightDistance);
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position + transform.up * 0.1f, transform.right * LineOfSightDistance, Color.red); // Debug purposes
+            Debug.DrawRay(transform.position + transform.up * 0.1f, transform.right * LineOfSightDistance, Color.green); // Debug purposes
         }
 
         return (Physics2D.Raycast(transform.position, transform.right, LineOfSightDistance, PlayerMask));
@@ -84,7 +84,7 @@ public class NPC : MonoBehaviour
     {
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position, transform.right * DistanceCheck, Color.green);
+            Debug.DrawRay(transform.position, transform.right * DistanceCheck, Color.red);
         }
 
         return (Physics2D.Raycast(transform.position, transform.right, DistanceCheck, WallMask));
@@ -95,10 +95,11 @@ public class NPC : MonoBehaviour
     {
         if (ToggleLineVisibility)
         {
-            Debug.DrawRay(transform.position + transform.right * DistanceCheck, -transform.up * 4, Color.black);
+            //Debug.DrawRay(transform.position + transform.right * DistanceCheck, -transform.up, Color.red);
+            Debug.DrawRay(transform.position + transform.right * DistanceCheck / 4, -transform.up, Color.red);
         }
 
-        return (Physics2D.Raycast(transform.position + transform.right * DistanceCheck, -transform.up, DistanceCheck, WallMask));
+        return (Physics2D.Raycast(transform.position + transform.right * DistanceCheck / 4, -transform.up, 1, WallMask));
     }
 
     public void TakeEscalator()

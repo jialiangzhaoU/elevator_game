@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
                 if (DisguiseDoor)
                 {
                     collision.gameObject.GetComponent<playerMove>().Disguised = true;
+                    print("Giving Player Disguise!");
                 }
 
 
