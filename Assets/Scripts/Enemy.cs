@@ -309,7 +309,7 @@ public class Enemy : NPC
         
         if (!isdead) {
 
-            player.StartCoroutine(player.JustKilled());
+            
 
 
 
