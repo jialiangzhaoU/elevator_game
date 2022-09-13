@@ -19,7 +19,7 @@ public class punch_attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //score_text.text = scene_save.score.ToString();
+        score_text.text = scene_save.score.ToString();
     }
 
     void OnTriggerEnter2D(Collider2D other)
