@@ -16,6 +16,7 @@ public class Guest : NPC
 
     private void OnEnable()
     {
+        playerMove.Stealth += UnAlert;
         player = GameObject.FindObjectOfType<playerMove>();
         Enemy.AlertAction += Alert;
         AlertAction += Alert;
@@ -24,12 +25,15 @@ public class Guest : NPC
 
     private void OnDisable()
     {
-
+        playerMove.Stealth -= UnAlert;
+        Enemy.AlertAction -= Alert;
+        AlertAction -= Alert;
+        playerMove.BroadcastLocation -= GetPlayerLoc;
     }
 
     private void Update()
     {
-        
+        FloorCheck();
         if (IsPlayerInRange() && !alerted)
         {
 
@@ -49,14 +53,17 @@ public class Guest : NPC
         print("Getting Player Location!");
     }
 
+    public void UnAlert()
+    {
+        alerted = false;
+    }
+
     private bool isdead=false;
     public void dead()
     {
         if (!isdead)
         {
-            Enemy.AlertAction -= Alert;
-            AlertAction -= Alert;
-            playerMove.BroadcastLocation -= GetPlayerLoc;
+
             player.StartCoroutine(player.JustKilled());
             isdead = true;        
             Destroy(this.gameObject);

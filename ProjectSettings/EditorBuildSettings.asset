@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/hotel.unity
     guid: b3a22738651e9114a937a00de190f12b
+  - enabled: 1
+    path: Assets/Scenes/Level_wj.unity
+    guid: ff52ba8aa716b384db5a60323deb3e5b
+  - enabled: 1
+    path: Assets/Scenes/BenHotel.unity
+    guid: d500c5db14413344e9c47601df959d6c
+  - enabled: 1
+    path: Assets/Scenes/zhao_test.unity
+    guid: f2479e09b4ec3a54988fadb65017abcb
   m_configObjects: {}

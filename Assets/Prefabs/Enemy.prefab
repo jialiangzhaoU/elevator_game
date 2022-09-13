@@ -109,8 +109,8 @@ MonoBehaviour:
     m_Bits: 256
   WallMask:
     serializedVersion: 2
-    m_Bits: 64
-  LineOfSightDistance: 2
+    m_Bits: 65600
+  LineOfSightDistance: 4
   ToggleLineVisibility: 1
   DistanceCheck: 2.5
   PatrolSpeed: 2

@@ -10,6 +10,11 @@ public class playerMove : MonoBehaviour
     public GameObject all_E;
     public delegate void Broadcast(Vector3 Loc);
     public static event Broadcast BroadcastLocation;
+
+    public delegate void EnterStealth(); //Broadcast when the player enters door or gets disgyuise, Un-Alert Enemies
+    public static event EnterStealth Stealth;
+
+
     //public Animator mc_animator;
 
     public Animator mc_animator;
@@ -20,12 +25,13 @@ public class playerMove : MonoBehaviour
     public float speed;
     public float jumpforce;
     public int DisguiseLength; //How long does our disguise last?
+    int BaseDisguiseLength;
     public LayerMask ground;
     public LayerMask headCheck;
     private bool jump_good = false;
     public Collider2D coll;
     public Collider2D head;
-    private bool squat;
+    public bool squat;
     public bool spotted;
     private float player_high;
     private float player_weigth;
@@ -48,7 +54,8 @@ public class playerMove : MonoBehaviour
     // Update is called once per frame
 
     void Start() {
-        headCheck_y=head.transform.localPosition.y;
+        BaseDisguiseLength = DisguiseLength;
+        headCheck_y =head.transform.localPosition.y;
         headCheck_x = head.transform.localPosition.x;
         player_high = this.GetComponent<CapsuleCollider2D>().size.y;
         player_weigth = this.GetComponent<CapsuleCollider2D>().size.x;
@@ -59,6 +66,12 @@ public class playerMove : MonoBehaviour
     {
         Guest.AlertAction += Spotted;
         Enemy.AlertAction += Spotted;
+    }
+
+    public void OnDisable()
+    {
+        Guest.AlertAction -= Spotted;
+        Enemy.AlertAction -= Spotted;
     }
 
     void Update()
@@ -259,6 +272,7 @@ public class playerMove : MonoBehaviour
             }
 
         }
+       
         StartCoroutine(lose_menu());
         
         
@@ -267,6 +281,7 @@ public class playerMove : MonoBehaviour
     IEnumerator lose_menu()
     {
         if (!mc_animator.GetBool("dead")) {
+            scene_save.score -= 500;
             mc_animator.SetBool("dead", true);
         }
         
@@ -292,6 +307,7 @@ public class playerMove : MonoBehaviour
     IEnumerator EnterDoor()
     {
         InDoor = true;
+        Stealth();
         print("Entering Door");
         temp_time = wait_time;
         /* rb.constraints = RigidbodyConstraints2D.FreezePosition;*/ //Prevent player from sliding If moving while entering door
@@ -344,6 +360,7 @@ public class playerMove : MonoBehaviour
     public IEnumerator DisguiseCountdown()
     {
         print("Getting Disguise!");
+        DisguiseLength = BaseDisguiseLength;
         Disguised = true;
         mc_animator.SetBool("Disguised", Disguised);
         while (DisguiseLength > 0)
@@ -356,6 +373,8 @@ public class playerMove : MonoBehaviour
 
     public void BreakDisguise()
     {
+        
+        print("Breaking Disguise!");
         Disguised = false;
         mc_animator.SetBool("Disguised", Disguised);
     }

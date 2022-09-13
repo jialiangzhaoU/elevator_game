@@ -20,7 +20,7 @@ public class enemy_door : MonoBehaviour
         door_animator = this.GetComponent<Animator>();
         create_time = Random.Range(2.0f, 10.0f);
         time =create_time;
-         a = Random.Range(-10.0f, 10.0f);
+         a = Random.Range(-10.0f, 25.0f);
         cam = UnityEngine.Camera.main;
         isCheck= true;
     }
@@ -54,14 +54,14 @@ public class enemy_door : MonoBehaviour
             if (a < 0 && all.transform.childCount<=6)
             {
                 door_animator.Play("door_open", 0, 0f);
-                // door_animator.SetBool("open",true);
+                 door_animator.SetBool("open",true);
                 GameObject guy=Instantiate(enemy, this.gameObject.transform.position, Quaternion.identity);
                 guy.transform.parent = all.transform;
             }
 
 
             time = create_time;
-            a = Random.Range(-10.0f, 10.0f);
+            a = Random.Range(-10.0f, 25.0f);
 
         }
     }

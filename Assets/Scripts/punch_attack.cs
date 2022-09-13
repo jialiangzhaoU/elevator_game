@@ -37,9 +37,9 @@ public class punch_attack : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().e_animator.SetBool("dead", true);
             scene_save.score += 100;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
 
-           
+            GetComponent<playerMove>().StartCoroutine(GetComponent<playerMove>().JustKilled());
             other.gameObject.GetComponent<Enemy>().dead();
 
 
@@ -62,8 +62,8 @@ public class punch_attack : MonoBehaviour
             }
             
             yield return new WaitForSeconds(0.8f);
-            
 
+            GetComponent<playerMove>().StartCoroutine(GetComponent<playerMove>().JustKilled());
             other.gameObject.GetComponent<Guest>().dead();
         }
       

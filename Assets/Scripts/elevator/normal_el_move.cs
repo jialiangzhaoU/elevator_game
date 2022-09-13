@@ -168,7 +168,7 @@ public class normal_el_move : MonoBehaviour
                 audioEle.Play();
 
             } //walk
-            print("Player in Elevator!");
+            //print("Player in Elevator!");
             inPlayerControl = true;
         }
     }
@@ -178,7 +178,7 @@ public class normal_el_move : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             audioEle.Pause();
-            print("Player Left Elevator!");
+            //print("Player Left Elevator!");
             inPlayerControl = false;
         }
     }
