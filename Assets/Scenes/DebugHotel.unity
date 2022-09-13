@@ -98989,6 +98989,7 @@ MonoBehaviour:
     m_Bits: 128
   coll: {fileID: 1087411839}
   head: {fileID: 1205546599}
+  squat: 0
   spotted: 0
   facedirection: 0
   horizontalmove: 0
@@ -131647,6 +131648,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 43702165}
     m_Modifications:
+    - target: {fileID: 4235882081600756384, guid: 112b767b4a350c74eb08549f37c63fb4, type: 3}
+      propertyPath: DisguiseDoor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4235882081600756444, guid: 112b767b4a350c74eb08549f37c63fb4, type: 3}
       propertyPath: m_Name
       value: door
