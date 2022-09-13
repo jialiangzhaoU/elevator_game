@@ -360,6 +360,7 @@ public class playerMove : MonoBehaviour
     public IEnumerator DisguiseCountdown()
     {
         print("Getting Disguise!");
+        DisguiseLength = BaseDisguiseLength;
         Disguised = true;
         mc_animator.SetBool("Disguised", Disguised);
         while (DisguiseLength > 0)
@@ -372,7 +373,7 @@ public class playerMove : MonoBehaviour
 
     public void BreakDisguise()
     {
-        DisguiseLength = BaseDisguiseLength;
+        
         print("Breaking Disguise!");
         Disguised = false;
         mc_animator.SetBool("Disguised", Disguised);
