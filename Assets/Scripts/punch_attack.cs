@@ -39,7 +39,7 @@ public class punch_attack : MonoBehaviour
             scene_save.score += 100;
             yield return new WaitForSeconds(0.4f);
 
-            GetComponent<playerMove>().StartCoroutine(GetComponent<playerMove>().JustKilled());
+            GameObject.FindObjectOfType<playerMove>().StartCoroutine(GameObject.FindObjectOfType<playerMove>().JustKilled());
             other.gameObject.GetComponent<Enemy>().dead();
 
 
@@ -63,7 +63,7 @@ public class punch_attack : MonoBehaviour
             
             yield return new WaitForSeconds(0.8f);
 
-            GetComponent<playerMove>().StartCoroutine(GetComponent<playerMove>().JustKilled());
+            GameObject.FindObjectOfType<playerMove>().StartCoroutine(GameObject.FindObjectOfType<playerMove>().JustKilled());
             other.gameObject.GetComponent<Guest>().dead();
         }
       

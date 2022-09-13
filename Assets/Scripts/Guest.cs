@@ -40,7 +40,7 @@ public class Guest : NPC
 
              if (player.Bloodstained) //Do NOT alert if player is disguised. 
             {
-                
+                AlertAction();
                 
             }
             

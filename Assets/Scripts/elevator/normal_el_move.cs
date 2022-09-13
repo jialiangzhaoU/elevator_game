@@ -163,6 +163,7 @@ public class normal_el_move : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
+            collision.gameObject.GetComponent<playerMove>().InElevator = true;
             if (!audioEle.isPlaying)
             {
                 audioEle.Play();
@@ -177,6 +178,7 @@ public class normal_el_move : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
+            collision.gameObject.GetComponent<playerMove>().InElevator = false;
             audioEle.Pause();
             //print("Player Left Elevator!");
             inPlayerControl = false;

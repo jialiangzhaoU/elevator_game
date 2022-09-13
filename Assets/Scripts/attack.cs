@@ -31,7 +31,7 @@ public class attack : MonoBehaviour
 
     void PlayerAttackJinZhan()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && temp_time<=0 && !squat)
+        if (Input.GetKeyDown(KeyCode.Space) && temp_time<=0 && !squat)
         {
             GetComponent<playerMove>().BreakDisguise();
             StartCoroutine(StartAttack());

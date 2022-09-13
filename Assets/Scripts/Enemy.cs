@@ -309,7 +309,6 @@ public class Enemy : NPC
         
         if (!isdead) {
 
-            
 
 
 

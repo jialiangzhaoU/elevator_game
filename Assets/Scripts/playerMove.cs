@@ -76,6 +76,12 @@ public class playerMove : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         //mc_animator.SetFloat("Horizontal",Input.GetAxis("Horizontal"));
         if (!InDoor && !InEscalator)
         {
@@ -207,7 +213,11 @@ public class playerMove : MonoBehaviour
             
         }
 
-        mc_animator.SetBool("Jump", Input.GetKey(KeyCode.Space));
+        if (!InRangeofDoor)
+        {
+            mc_animator.SetBool("Jump", Input.GetKey(KeyCode.W) && !InElevator);
+        }
+        
 
         mc_animator.SetBool("Crouch", squat);
         if (mc_animator.GetBool("Crouch")) {
@@ -217,7 +227,7 @@ public class playerMove : MonoBehaviour
         //crouch
 
 
-        if (Input.GetButtonDown("Jump") && jump_good == true)
+        if (Input.GetButtonDown("Jump") && jump_good == true && !InRangeofDoor && !InElevator)
         {
             
             audioJump.Play();
@@ -302,6 +312,7 @@ public class playerMove : MonoBehaviour
 
     public void player_jump() {
         rb.AddForce(new Vector2(0, jumpforce));
+        print("Jumping!");
     }
 
     IEnumerator EnterDoor()

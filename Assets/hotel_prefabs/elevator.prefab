@@ -54,7 +54,7 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  speed: 2
+  speed: 3
   ElevatorWaitTime: 3
   StopLocationBottom: 0
   StopLocationTop: -0.12
