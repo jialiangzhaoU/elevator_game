@@ -20,7 +20,7 @@ public class enemy_door : MonoBehaviour
         door_animator = this.GetComponent<Animator>();
         create_time = Random.Range(2.0f, 10.0f);
         time =create_time;
-         a = Random.Range(-10.0f, 25.0f);
+         a = Random.Range(-10.0f, 28.0f);
         cam = UnityEngine.Camera.main;
         isCheck= true;
     }
@@ -61,7 +61,7 @@ public class enemy_door : MonoBehaviour
 
 
             time = create_time;
-            a = Random.Range(-10.0f, 25.0f);
+            a = Random.Range(-10.0f, 28.0f);
 
         }
     }
